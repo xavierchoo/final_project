@@ -14,14 +14,14 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets";
 @import "bootstrap";
+html,body{
+   height: 100%;
+}
 
  /* Vision & Mission Page */
  .intro{
-   margin-top: 1%;
    height:100%;
-   clear: both;
  }
 
  .left{
@@ -29,17 +29,19 @@
    justify-content : center;
    align-items : center;
    height : 100%;
-   background: url("../img/snack_7.jpg") no-repeat top center;
+    background-color: #C90813;
  	background-size: cover;
+   background-color: rgba(200,100,0,.5); // Tint color
+   background-blend-mode: multiply;
 
  }
  .right{
    float: right;
    justify-content : center;
    align-items : center;
-   background-color:#fff;
+   background-color:#FFF;
    height : 100%;
-   color : #FFF;
+   color : #000;
  }
  .login h1{
    margin-top: 10%;
@@ -61,5 +63,67 @@
    font-weight: 300;
    color: #53575B;
    width: 65%;
+ }
 
+ .sign-in{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    z-index: 15;
+    top: 35%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+     }
+
+ .email-label{
+  display: block;
+ }
+
+  .text-field,.password-field{
+    margin-bottom: 5%;
+  }
+ .text-field input {
+   width: 300px;
+   padding: 2%;
+   outline: none;
+   border: none;
+   border-bottom: 2px solid black;
+
+ }
+ .password-field input {
+   width: 300px;
+   padding: 2%;
+   outline: none;
+   border: none;
+   border-bottom: 2px solid black;
+ }
+ input{
+
+   color: #53575B;
+   text-decoration: none;
+ }
+ input:focus{
+   outline: none;
+   border-color: none;
+ }
+ .submit-field{
+   margin-top: 10%;
+   width: 300px;
+   text-align: center;
+ }
+
+ .btn-dark{
+   width: 300px;
+ }
+ #welcome{
+   margin-bottom: 20%;
+ }
+ .other-links{
+   margin-top: 2%;
+ }
+ .other-links a{
+   color: #53575B;
+   text-decoration: none;
+   text-align: center;
+   display: block;
  }
