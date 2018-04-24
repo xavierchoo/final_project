@@ -1,12 +1,24 @@
 Rails.application.routes.draw do
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
-  resource :session, controller: "clearance/sessions", only: [:create]
+  resource :session, controller: "clearance/sessions", only: [:create, :delete]
 
   resources :users, controller: "users", only: [:create] do
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
   end
+
+  root 'welcome#index'
+
+  resources :articles
+
+  resources :admins, only: [:index]
+
+  resources :users, only: [:index, :show]
+
+  get 'braintree/new'
+  get 'braintree/index'
+  post 'braintree/checkout'
 
   # get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   # delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"

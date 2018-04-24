@@ -1,4 +1,8 @@
 class UsersController < Clearance::UsersController
+	
+	def show
+	end
+
 	def create
 		
 		@user =User.new(register_params)
