@@ -1,0 +1,2 @@
+class Bbc < ApplicationRecord
+end

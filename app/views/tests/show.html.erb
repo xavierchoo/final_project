@@ -1,0 +1,6 @@
+<% if @paragraph.present? %>
+	<%= @paragraph.inner_html.html_safe %>
+<% elsif @pp.present? %>
+	<%= @pp.inner_html.html_safe %>
+<% else %>
+<%end %>
