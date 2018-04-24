@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+
   resources :articles
 
   resources :admins, only: [:index]

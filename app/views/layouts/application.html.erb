@@ -7,20 +7,34 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   </head>
-
   <body>
-  <% if signed_in? %>
-  <% if current_user.admin %>
-  <%= button_to "Admin's page", admins_path, method: :get %>
-  <% else %>
-  <%= button_to "User's page", user_path(current_user.id), method: :get %>
-  <% end %>
-  <% end %>
-    <%= button_to "Home", root_path, method: :get %>
-    <%= button_to "Sign in", sign_in_path, method: :get %>
-    <%= button_to "Sign out", sign_out_path, method: :delete %>
-    <%= link_to "Make Payment", braintree_new_path %>
+
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <%= link_to "News Plus", root_path, class: "navbar-brand abs" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="collapsingNavbar">
+          <ul class="navbar-nav">
+
+          </ul>
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <%= link_to "Sign up", sign_up_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Sign in", sign_in_path, class: "nav-link" %>
+            </li>
+
+          </ul>
+      </div>
+  </nav>
+
+
     <%= yield %>
   </body>
 </html>
