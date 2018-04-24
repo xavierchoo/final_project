@@ -1,0 +1,129 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap";
+html,body{
+   height: 100%;
+}
+
+ /* Vision & Mission Page */
+ .intro{
+   height:100%;
+ }
+
+ .left{
+   float: left;
+   justify-content : center;
+   align-items : center;
+   height : 100%;
+ 	background-size: cover;
+   background-color: rgba(200,100,0,.5); // Tint color
+   background-blend-mode: multiply;
+
+ }
+ .right{
+   float: right;
+   justify-content : center;
+   align-items : center;
+   background-color:#FFF;
+   height : 100%;
+   color : #000;
+ }
+
+ .sign-in{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    z-index: 15;
+    top: 35%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+     }
+  .sign-up{
+        position: absolute;
+        width: 300px;
+        height: 200px;
+        z-index: 15;
+        top: 25%;
+        left: 50%;
+        margin: -100px 0 0 -150px;
+    }
+    .password-reset{
+       position: absolute;
+       width: 300px;
+       height: 200px;
+       z-index: 15;
+       top: 40%;
+       left: 50%;
+       margin: -100px 0 0 -150px;
+        }
+ .email-label{
+   margin-top: 20px;
+  display: block;
+ }
+
+  .text-field,.password-field{
+    margin-bottom: 5%;
+  }
+ .text-field input {
+   width: 300px;
+   padding: 2%;
+   outline: none;
+   border: none;
+   border-bottom: 2px solid black;
+
+ }
+ .password-field input {
+   width: 300px;
+   padding: 2%;
+   outline: none;
+   border: none;
+   border-bottom: 2px solid black;
+ }
+ input{
+
+   color: #53575B;
+   text-decoration: none;
+ }
+ input:focus{
+   outline: none;
+   border-color: none;
+ }
+ .submit-field{
+   margin-top: 10%;
+   width: 300px;
+   text-align: center;
+ }
+
+ .btn-dark{
+   width: 300px;
+   background-color: #000!important;
+ }
+ #welcome{
+   margin-bottom: 20%;
+ }
+ .other-links{
+   margin-top: 2%;
+ }
+ .other-links a{
+   color: #53575B;
+   text-decoration: none;
+   text-align: center;
+   display: block;
+ }
+ .bg-dark{
+   background-color: #000!important;
+ }
