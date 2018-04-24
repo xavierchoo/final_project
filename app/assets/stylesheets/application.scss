@@ -29,7 +29,6 @@ html,body{
    justify-content : center;
    align-items : center;
    height : 100%;
-    background-color: #C90813;
  	background-size: cover;
    background-color: rgba(200,100,0,.5); // Tint color
    background-blend-mode: multiply;
@@ -43,27 +42,6 @@ html,body{
    height : 100%;
    color : #000;
  }
- .login h1{
-   margin-top: 10%;
-   width: 100%;
-   text-align: center;
-   font-size: 100px;
-   font-weight: 900;
-   color: #53575B;
-   margin-bottom: -5%;
- }
-
- .login p{
-   padding-top: 10%;
-   margin-left: 20%;
-   margin-bottom: -10%;
-   text-align:justify;
-   font-family: Lora,'Times New Roman',serif;
-   font-size: 20px;
-   font-weight: 300;
-   color: #53575B;
-   width: 65%;
- }
 
  .sign-in{
     position: absolute;
@@ -74,8 +52,26 @@ html,body{
     left: 50%;
     margin: -100px 0 0 -150px;
      }
-
+  .sign-up{
+        position: absolute;
+        width: 300px;
+        height: 200px;
+        z-index: 15;
+        top: 25%;
+        left: 50%;
+        margin: -100px 0 0 -150px;
+    }
+    .password-reset{
+       position: absolute;
+       width: 300px;
+       height: 200px;
+       z-index: 15;
+       top: 40%;
+       left: 50%;
+       margin: -100px 0 0 -150px;
+        }
  .email-label{
+   margin-top: 20px;
   display: block;
  }
 
