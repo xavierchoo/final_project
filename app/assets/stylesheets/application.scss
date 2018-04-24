@@ -110,6 +110,7 @@ html,body{
 
  .btn-dark{
    width: 300px;
+   background-color: #000!important;
  }
  #welcome{
    margin-bottom: 20%;
@@ -122,4 +123,7 @@ html,body{
    text-decoration: none;
    text-align: center;
    display: block;
+ }
+ .bg-dark{
+   background-color: #000!important;
  }
