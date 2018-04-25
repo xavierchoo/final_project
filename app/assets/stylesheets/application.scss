@@ -32,6 +32,32 @@ html,body{
   margin-bottom: 0px;
   border-bottom: 5px solid black;
 }
+.jumbotron span{
+  position: absolute;
+   bottom: 10%;
+   right: 0;
+   color: #fff;
+   width: 50%;
+   padding: 15px;
+   height: auto;
+   font-size: 30px;
+   font-weight: 400;
+   background-color: rgba(0, 0, 0, 0.6);
+   font-family: 'Playfair Display', serif;
+}
+.article-bg span{
+  position: absolute;
+   bottom: 10%;
+   right: 0;
+   color: #fff;
+   width: 50%;
+   padding: 15px;
+   height: auto;
+   font-size: 19px;
+   font-weight: 400;
+   background-color: rgba(0, 0, 0, 0.6);
+   font-family: 'Playfair Display', serif;
+}
 
 .article-bg{
   margin-top: 0px;
