@@ -1,6 +1,6 @@
 
 <% random_number = Random.new
- 		page = random_number.rand(0..9) %>
+ 		page = random_number.rand(0..3) %>
 
 
 <div class="jumbotron jumbotron-fluid" onclick="window.location='<%= show_path(link: @index[page].url) %>';" style="background-image: url(<%= @index[page].urlToImage %>)">
