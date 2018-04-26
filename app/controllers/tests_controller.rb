@@ -19,8 +19,6 @@ class TestsController < ApplicationController
 		@description = params[:description]
 		@link = params[:link]
 		@image = params[:image]
-		byebug
-
 	end
 
 
