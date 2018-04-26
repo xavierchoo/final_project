@@ -11,23 +11,6 @@ class TestsController < ApplicationController
 
 
 	def show
-		n = News.new("e9a7bf1016d247af9980045693f8f46b")
-		document = open('http://www.bbc.com/news/world-us-canada-43897212')
-		content = document.read
-		parsed_content = Nokogiri::HTML(content)
-		# @content = parsed_content.css('.clearfix').css('.parsys.content')
-		if !parsed_content.css('.container').empty?
-			@title = parsed_content.css('.story-body').css('.story-body__h1').children
-			@paragraph = parsed_content.css('.story-body').css('.story-body__inner p').inner_text
-			@images = []
-			@image = parsed_content.css('.story-body').css('.story-body__inner').css('.image-and-copyright-container')
-			@image.each {|x|  x.css(".js-delayed-image-load").each {|x| @images <<  x.attr("data-src")}}
-
-		elsif !parsed_content.css('.vxp-media__container').empty?
-			@content = parsed_content.css('.vxp-media__container').css('.vxp-column--single').css('.vxp-media__body p')
-		end
-
-		@title = parsed_content.css('.story-body').css('.story-body__h1').children
 
 	end
 
@@ -55,21 +38,24 @@ class TestsController < ApplicationController
 	end
 
 	def bbc
-
+		n = News.new("e9a7bf1016d247af9980045693f8f46b")
+		document = open('http://www.bbc.com/news/av/world-asia-43890630/why-i-performed-magic-in-north-korea')
+		content = document.read
+		parsed_content = Nokogiri::HTML(content)
+		# @content = parsed_content.css('.clearfix').css('.parsys.content')
 		if !parsed_content.css('.container').empty?
-			@content = parsed_content.css('.container').css('.story-body').css('.story-body__inner')
+			@title = parsed_content.css('.story-body').css('.story-body__h1').children
+			@paragraph = parsed_content.css('.story-body').css('.story-body__inner p').inner_text
+			@images = []
+			@image = parsed_content.css('.story-body').css('.story-body__inner').css('.image-and-copyright-container')
+			@image.each {|x|  x.css(".js-delayed-image-load").each {|x| @images <<  x.attr("data-src")}}
+			@vidpic = parsed_content.css('.story-body').css('.story-body__inner').css('.player-with-placeholder').css('.media-placeholder.player-with-placeholder__image')
+			@vidpictures = @vidpic.map {|i| i.attr('src')}
 		elsif !parsed_content.css('.vxp-media__container').empty?
-			@content = parsed_content.css('.vxp-media__container').css('.vxp-column--single').css('.vxp-media__body p')
+			@title = parsed_content.css('.vxp-media__container').css('.vxp-column--single').css('.vxp-media__body').css('.vxp-media__headline').inner_text
+			@paragraph = parsed_content.css('.vxp-media__container').css('.vxp-column--single').css('.vxp-media__body').css('div.vxp-media__summary p').inner_html.html_safe
+			@vidpictures = parsed_content.css('.vxp-media__player img').attr('src')
 		end
-
-		@title = parsed_content.css('.story-body').css('.story-body__h1').children
-		@paragraph = parsed_content.css('.story-body').css('.story-body__inner p').inner_text
-		@image = parsed_content.css('.story-body').css('.story-body__inner').css('.image-and-copyright-container')
-		@image.each {|x|  x.css(".js-delayed-image-load").each {|x| images <<  x.attr("data-src")}}
-		images.all #show all images link in an array 
-
-		#this is for bbc news view
-
 		#<% if @paragraph.present? %>
 		#	<%= @paragraph.inner_html.html_safe %>
 		#<% elsif @pp.present? %>
