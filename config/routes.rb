@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "/article" => "tests#show" , as: "show"
-
+  get "/homepage" => "tests#homepage", as: "homepage"
   get "/index" => "tests#index" , as: "index"
+  get "/new" => "tests#new" , as: "new"
+  post "/create" => "tests#create" , as: "create"
 end
