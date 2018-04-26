@@ -1,5 +1,25 @@
+
 	<%= @title  %></br>
 	<%= @paragraph  %></br>
 	<%= @images %>
 
 
+=======
+<div class="show">
+	<div class="row">
+		<div class="col-md-2">
+
+  </div>
+  <div class="col-md-5 cent">
+		<% if @paragraph.present? %>
+			<%= @paragraph.inner_html.html_safe %>
+		<% elsif @pp.present? %>
+			<%= @pp.inner_html.html_safe %>
+		<% else %>
+		<%end %>
+	</div>
+
+	</div>
+
+</div>
+>>>>>>> 645e29a1ac4d2a915f88b715c1e7ac0230a659da
