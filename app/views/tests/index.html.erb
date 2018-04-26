@@ -1,0 +1,28 @@
+
+
+<% random_number = Random.new
+ 		page = random_number.rand(0..3) %>
+
+
+<div class="jumbotron jumbotron-fluid" onclick="window.location='<%= show_path(link: @index[page].url) %>';" style="background-image: url(<%= @index[page].urlToImage %>)">
+
+   <span> <%= @index[page].description %></span>
+</div>
+
+
+<div class="container-fluid">
+
+   <% @index.in_groups_of(2, false) do |group| %>
+      <div class="row">
+         <% group.each do |u| %>
+             <div class="col-md-6 col-sm-12 article-bg" style="background-image: url(<%= u.urlToImage %>)" onclick="window.location='<%= show_path(link: u.url) %>';">
+               <span><%= u.description %></span> 
+               <!-- <%= u.name %>
+            	</br> -->
+            	<!-- <%= image_tag u.urlToImage %></br> -->
+
+            </div>
+         <% end %>
+      </div>
+   <% end %>
+</div>

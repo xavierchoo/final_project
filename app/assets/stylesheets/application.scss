@@ -15,8 +15,61 @@
  */
 
 @import "bootstrap";
+
 html,body{
    height: 100%;
+}
+
+.jumbotron{
+  margin-top: 0px;
+  position: relative;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: cover;
+  background-color: rgba(200,100,0,.5); // Tint color
+  background-blend-mode: multiply;
+  margin-bottom: 0px;
+  border-bottom: 5px solid black;
+}
+.jumbotron span{
+  position: absolute;
+   bottom: 10%;
+   right: 0;
+   color: #fff;
+   width: 50%;
+   padding: 15px;
+   height: auto;
+   font-size: 30px;
+   font-weight: 400;
+   background-color: rgba(0, 0, 0, 0.6);
+   font-family: 'Playfair Display', serif;
+}
+.article-bg span{
+  position: absolute;
+   bottom: 10%;
+   right: 0;
+   color: #fff;
+   width: 50%;
+   padding: 15px;
+   height: auto;
+   font-size: 19px;
+   font-weight: 400;
+   background-color: rgba(0, 0, 0, 0.6);
+   font-family: 'Playfair Display', serif;
+}
+
+.article-bg{
+  margin-top: 0px;
+  height: 400px;
+  width: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: cover;
+  background-color: rgba(200,100,0,.5); // Tint color
+  background-blend-mode: multiply;
+  border: 5px solid black;
 }
 
  /* Vision & Mission Page */
@@ -127,3 +180,59 @@ html,body{
  .bg-dark{
    background-color: #000!important;
  }
+
+ .show{
+  margin-top: 5%;
+   text-align: justify;
+
+ }
+
+ .cent p{
+   align-items: center;
+   margin-left: 30%;
+   width: 100%;
+ }
+
+.cent h2{
+  text-align: center;
+  margin-left: 30%;
+  width: 100%;
+}
+
+.story-body__unordered-list{
+  margin-left: 23.5%;
+  width: 100%;
+  list-style-type: none;
+}
+
+.image-and-copyright-container .off-screen{
+  text-align: center;
+  margin-left: 70%;
+  width: 100%;
+  font-size: 10px;
+}
+.image-and-copyright-container .story-image-copyright{
+  width: 100%;
+  font-size: 10px;
+}
+.media-caption{
+  font-size: 12px;
+  text-align: center;
+  margin-left: 30%;
+  width: 100%;
+}
+
+.cent a{
+  color: #53575B;
+  text-decoration: none;
+}
+.cent a:hover{
+  color: purple;
+}
+
+.cent img{
+  align-content: center;
+  margin-left: 35%;
+  width: 90%;
+  height: auto;
+}
