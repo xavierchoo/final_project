@@ -1,19 +1,18 @@
-
-  <%= form.label :first_name %>:
-  <%= form.text_field :first_name %><br />
-
-  <%= form.label :last_name %>:
-  <%= form.text_field :last_name %><br />
-
-  <%= form.label :username %>:
-  <%= form.text_field :username %><br />
-
 	<div class="text-field">
-	  <%= form.label :email %>
-	  <%= form.text_field :email, type: 'email' %>
-	</div>	
+
+  <%= form.label :first_name, class: "email-label" %>
+  <%= form.text_field :first_name,placeholder: "First Name" %><br />
+
+  <%= form.label :last_name, class: "email-label" %>
+  <%= form.text_field :last_name,placeholder: "Last Name" %><br />
+
+  <%= form.label :username, class: "email-label" %>
+  <%= form.text_field :username,placeholder: "Username" %><br />
+
+	  <%= form.label :email, class: "email-label"  %>
+	  <%= form.text_field :email, type: 'email',placeholder: "Email" %>
+	</div>
 	<div class="password-field">
 	  <%= form.label :password %>
-	  <%= form.password_field :password %>
+	  <%= form.password_field :password,placeholder: "Password" %>
 	</div>
-

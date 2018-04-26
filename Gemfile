@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+  source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.3.1'
@@ -18,6 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
+gem 'bootstrap', '~> 4.1.0'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -65,3 +67,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'braintree'
+
+gem "figaro"

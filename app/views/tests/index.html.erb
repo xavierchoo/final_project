@@ -1,18 +1,28 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<% @index.each do |u| %>
-	<%= u.name %></br>
+<% random_number = Random.new
+ 		page = random_number.rand(0..9) %>
 
-	<%= u.description %></br>
-	<% if u.urlToImage.present? %>
-		<%= image_tag u.urlToImage %></br>
-	<% else %>
-	<%end%>
-	
-	<%= link = u.url %></br>	
-	<%= link_to '<button type="button">Read the article</button>'.html_safe, show_path(link: u.url ,image: u.urlToImage) %></br>
-	<%= link_to '<button type="button">Add to article</button>'.html_safe, homepage_path(name: u.name, description: u.description,link: u.url ,image: u.urlToImage) %></br></br>
-<% end %>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+<div class="jumbotron jumbotron-fluid" onclick="window.location='<%= show_path(link: @index[page].url) %>';" style="background-image: url(<%= @index[page].urlToImage %>)">
+
+   <span> <%= @index[page].description %></span>
+</div>
+
+
+<div class="container-fluid">
+
+   <% @index.in_groups_of(2, false) do |group| %>
+      <div class="row">
+         <% group.each do |u| %>
+             <div class="col-md-6 col-sm-12 article-bg" style="background-image: url(<%= u.urlToImage %>)" onclick="window.location='<%= show_path(link: u.url) %>';">
+               <span><%= u.description %></span> 
+               <!-- <%= u.name %>
+            	</br> -->
+            	<!-- <%= image_tag u.urlToImage %></br> -->
+
+            </div>
+         <% end %>
+      </div>
+   <% end %>
+</div>
+
