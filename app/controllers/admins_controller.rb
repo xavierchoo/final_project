@@ -1,7 +1,9 @@
 class AdminsController < ApplicationController
-	# before_action :check_admin
+	before_action :check_user
+	before_action :check_admin
 
 	def index
+
 		@articles = Article.all
 	end
 
@@ -15,7 +17,6 @@ class AdminsController < ApplicationController
 			redirect_to root_path
 		end
 	end
-
 end
 	# def check_admin
 	# 	if !current_user.admin

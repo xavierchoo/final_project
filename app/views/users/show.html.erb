@@ -1,0 +1,7 @@
+
+<%= image_tag current_user.profile_pic_url.to_s %>
+
+<%= link_to "edit", edit_user_path(id: current_user.id) %>
+
+<%= current_user.description %>
+
