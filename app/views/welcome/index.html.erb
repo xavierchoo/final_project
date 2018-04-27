@@ -1,9 +1,7 @@
 <% random_number = Random.new
  		page = random_number.rand(0..3)
       link = @articles[2].image
-       %>
-
-
+    %>
 <div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
 
    <span> <%= @articles[2].description %></span>
@@ -25,3 +23,4 @@
       </div>
    <% end %>
 </div>
+
