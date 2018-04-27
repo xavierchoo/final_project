@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   resources :articles
 
-  resources :admins, only: [:index] 
+  resources :admins, only: [:index, :update] 
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :update]
 
   resources :admin_selections, only: [:create, :delete]
 
