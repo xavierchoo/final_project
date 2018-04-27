@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
-	# before_action :check_user
-	# before_action :check_admin
+	before_action :check_user
+	before_action :check_admin
 
 	def index
 		@user = current_user
@@ -17,7 +17,7 @@ class AdminsController < ApplicationController
 
 	def check_user
 		if !current_user
-			flash[:notice] = "Sorry, please sign in to continue!"
+		
 			redirect_to sign_in_path
 		end 
 	end

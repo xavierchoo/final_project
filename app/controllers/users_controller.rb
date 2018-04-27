@@ -6,13 +6,17 @@ class UsersController < Clearance::UsersController
 
 	def create
 
-		@user =User.new(register_params)
+		@user = User.new(register_params)
 		if @user.save
 		    sign_in @user
 		    redirect_to '/'
 		else
 		    render template: "users/new"
 		end
+	end
+
+	def edit
+		@user = current_user
 	end
 
 	def update

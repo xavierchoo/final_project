@@ -17,9 +17,9 @@ Rails.application.routes.draw do
 
   resources :admins, only: [:index, :update] 
 
-  resources :users, only: [:index, :show, :update]
+  resources :users, only: [:index, :show, :update, :edit]
 
-  resources :admin_selections, only: [:create, :delete]
+  resources :admin_selections, only: [:create, :destroy]
 
   get 'braintree/new'
   post 'braintree/checkout'
