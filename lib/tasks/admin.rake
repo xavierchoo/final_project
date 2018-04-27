@@ -46,7 +46,7 @@ sources.each do |source|
   )
 
   data.each do |data|
-    Testing.create(
+    Article.create(
       description: data.description,
       name:        data.name,
       image:       data.urlToImage,

@@ -55,6 +55,12 @@ class TestsController < ApplicationController
 
 
 	def bbc
+
+		n = News.new("e9a7bf1016d247af9980045693f8f46b")
+		document = open(params[:link])
+		content = document.read
+		parsed_content = Nokogiri::HTML(content)
+
 		# @content = parsed_content.css('.clearfix').css('.parsys.content')
 		if !parsed_content.css('.container').empty?
 			@title = parsed_content.css('.story-body').css('.story-body__h1').children
