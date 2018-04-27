@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_24_014141) do
+ActiveRecord::Schema.define(version: 2018_04_27_040204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_selections", force: :cascade do |t|
+    t.bigint "testing_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["testing_id"], name: "index_admin_selections_on_testing_id"
+    t.index ["user_id"], name: "index_admin_selections_on_user_id"
+  end
+
+  create_table "bbcs", force: :cascade do |t|
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "testings", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "link"
+    t.string "image"
+    t.boolean "published", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "category"
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -27,8 +53,11 @@ ActiveRecord::Schema.define(version: 2018_04_24_014141) do
     t.string "encrypted_password", limit: 128, null: false
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128, null: false
+    t.string "profile_pic"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
+  add_foreign_key "admin_selections", "testings"
+  add_foreign_key "admin_selections", "users"
 end

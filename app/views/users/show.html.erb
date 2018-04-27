@@ -1,0 +1,9 @@
+<%= image_tag current_user.profile_pic_url.to_s %>
+
+<%= form_for @user, :html => {:multipart => true} do |f| %>
+
+  <p>
+    <%= f.file_field :profile_pic %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
