@@ -38,12 +38,13 @@ class TestsController < ApplicationController
 		
 	end
 
+
 	def new_york_times
 		@title = parsed_content.css('#story').css('h1').children
 		@image = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
 		@paragraph =  parsed_content.css('#story').css('.story-body-text.story-content').css('p').inner_text
-
 	end
+
 
 	def time
 		@image = parsed_content.css('.article-content').css('.image-wrapper').css('img')
