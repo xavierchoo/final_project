@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_27_071833) do
+
+
+
+ActiveRecord::Schema.define(version: 2018_04_27_070631) do
+
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +27,17 @@ ActiveRecord::Schema.define(version: 2018_04_27_071833) do
     t.datetime "updated_at", null: false
     t.index ["testing_id"], name: "index_admin_selections_on_testing_id"
     t.index ["user_id"], name: "index_admin_selections_on_user_id"
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "link"
+    t.string "image"
+    t.boolean "published", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "category"
   end
 
   create_table "bbcs", force: :cascade do |t|
@@ -59,6 +75,17 @@ ActiveRecord::Schema.define(version: 2018_04_27_071833) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
+  create_table "welcome_indices", force: :cascade do |t|
+    t.bigint "article_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_welcome_indices_on_article_id"
+    t.index ["user_id"], name: "index_welcome_indices_on_user_id"
+  end
+
   add_foreign_key "admin_selections", "testings"
   add_foreign_key "admin_selections", "users"
+  add_foreign_key "welcome_indices", "articles"
+  add_foreign_key "welcome_indices", "users"
 end
