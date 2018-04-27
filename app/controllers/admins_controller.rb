@@ -1,7 +1,9 @@
 class AdminsController < ApplicationController
+	# before_action :check_user
 	# before_action :check_admin
 
 	def index
+
 		@articles = Article.all
 	end
 

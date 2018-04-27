@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   resources :welcome, only: [:index, :show]
   resources :testings
   resources :articles
-  resources :users, only: [:index, :show]
+
+
+
+  resources :users, only: [:index, :show, :update]
+
 
   get 'braintree/new'
   post 'braintree/checkout'
