@@ -1,7 +1,8 @@
 <% random_number = Random.new
  		page = random_number.rand(0..3)
       link = @articles[2].image
-    %>
+%>
+
 <div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
 
    <span> <%= @articles[2].description %></span>
@@ -11,14 +12,15 @@
 
    <% @articles.in_groups_of(2, false) do |group| %>
       <div class="row">
-         <% group.each do |u| %>
-            <% if u.image != nil %>
-             <div class="col-md-6 col-sm-12 article-bg " style="background-image: url(<%= u.image %>)">
-            <% else %>
-               <div class="col-md-6 col-sm-12 article-bg " style="background-image: url(/news_plus.png)">
-            <% end %>
-               <span><%= u.description %></span>
-            </div>
+            <% group.each do |u| %>
+
+               <div class="col-md-6 col-sm-12" style="padding: 0;">
+                  <%= link_to demo_path(link: u.link) do %>
+                     <div class="article-bg" style="background-image: url(<%= u.image.presence || '/news_plus.png' %>)">
+                        <span><%= u.description %></span>
+                     </div>
+                  <% end %>
+               </div>
          <% end %>
       </div>
    <% end %>

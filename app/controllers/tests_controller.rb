@@ -37,7 +37,7 @@ class TestsController < ApplicationController
 
 	def bbc
 		n = News.new("e9a7bf1016d247af9980045693f8f46b")
-		document = open('http://www.bbc.com/news/av/world-asia-43890630/why-i-performed-magic-in-north-korea')
+		document = open(params[:link])
 		content = document.read
 		parsed_content = Nokogiri::HTML(content)
 		# @content = parsed_content.css('.clearfix').css('.parsys.content')

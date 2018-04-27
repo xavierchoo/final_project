@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+
+  resources :testings
+
   resources :articles
 
   resources :admins, only: [:index] 
@@ -20,7 +23,7 @@ Rails.application.routes.draw do
 
   get 'braintree/new'
   post 'braintree/checkout'
-
+  get "/demo" => "tests#bbc", as: "demo"
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
