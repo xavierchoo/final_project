@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
-	# before_action :check_user
-	# before_action :check_admin
+	before_action :check_user
+	before_action :check_admin
 
 	def index
 
@@ -18,7 +18,6 @@ class AdminsController < ApplicationController
 			redirect_to root_path
 		end
 	end
-
 end
 	# def check_admin
 	# 	if !current_user.admin
