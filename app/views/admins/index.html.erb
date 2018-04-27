@@ -1,9 +1,5 @@
-<% @index.each do |u| %>
-    <%= u.name %></br>
-    <%= u.description %></br>
-    <% if u.urlToImage.present? %>
-        <%= image_tag u.urlToImage %></br>
-    <% else %>
-    <%= link = u.url %></br>    
-    <%= link_to '<button type="button">Read the article</button>'.html_safe, show_path(link: u.url ,image: u.urlToImage) %></br>
-    <%end%>
+<% @articles.each do |article| %>
+    <%= article.name %></br>
+    <%= article.description %></br>
+    <%= button_to "Add article", admin_selections_path(testing_id: article.id), method: :post %>
+<% end %>
