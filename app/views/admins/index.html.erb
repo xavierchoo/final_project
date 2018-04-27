@@ -1,5 +1,5 @@
 <% @articles.each do |article| %>
     <%= article.name %></br>
     <%= article.description %></br>
-    <%= button_to "Add article", admin_selections_path(testing_id: article.id), method: :post %>
+    <%= button_to "Add article", admin_create_path(article_id: article.id), method: :post %>
 <% end %>

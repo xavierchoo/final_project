@@ -1,12 +1,9 @@
 class WelcomeController < ApplicationController
 
 	def index
-		@articles = AdminSelection.all
-		@new_select = AdminSelection.new
-	end
 
-	def show 
-
+		@articles = Article.all
+		@new_select = WelcomeIndex.new
 	end
 
 end

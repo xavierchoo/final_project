@@ -1,0 +1,2 @@
+class WelcomeIndex < ApplicationRecord
+end

@@ -6,11 +6,18 @@ class TestsController < ApplicationController
 	end
 
 	def index
+		
 	end
 
 
 
 	def show
+		n = News.new("e9a7bf1016d247af9980045693f8f46b")
+		document = open(params[:link])
+		content = document.read
+		parsed_content = Nokogiri::HTML(content)
+
+
 
 	end
 
@@ -23,23 +30,37 @@ class TestsController < ApplicationController
 
 
 	def abc
-		@content =parsed_content.css('.clearfix').css('.parsys_content')
+		@title = parsed_content.css('.container').css('.article-header h1').children
+		@description = parsed_content.css('.container').css('.article-body').css('.article-copy p').inner_text
+		@image = parsed_content.css('.container').css('.article-body').css('picture').css('img')
+		@images = @image.map{|x| x.attr('src')}
+
+		
 	end
+
+
+	def new_york_times
+		@title = parsed_content.css('#story').css('h1').children
+		@image = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
+		@paragraph =  parsed_content.css('#story').css('.story-body-text.story-content').css('p').inner_text
+	end
+
 
 	def time
-
-		@content =parsed_content.css('.article-content').css('#article-body').css('.padded')
+		@image = parsed_content.css('.article-content').css('.image-wrapper').css('img')
+		@images = @image.map{|x| x.attr('src')}
+		@title = parsed_content.css('.article-header').css('h1').children
+		@paragraph = parsed_content.css('.article-content').css('#article-body').css('div.padded p').inner_text
 	end
-	def espn
 
-		@content = parsed_content.css('#main-container').css('.container').css('.article-body')
-	end
 
 	def bbc
+
 		n = News.new("e9a7bf1016d247af9980045693f8f46b")
 		document = open(params[:link])
 		content = document.read
 		parsed_content = Nokogiri::HTML(content)
+
 		# @content = parsed_content.css('.clearfix').css('.parsys.content')
 		if !parsed_content.css('.container').empty?
 			@title = parsed_content.css('.story-body').css('.story-body__h1').children
