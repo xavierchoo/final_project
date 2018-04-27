@@ -1,8 +1,26 @@
+<% random_number = Random.new
+ 		page = random_number.rand(0..3)
+      link = @articles[2].image
+    %>
+<div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
 
-<%= button_to "All Articles", articles_path, method: :get %>
+   <span> <%= @articles[2].description %></span>
+</div>
 
- <% @articles.each do |article| %>
-    <%= article.name %></br>
-    <%= article.description %></br>
-    <%= button_to "Read article", admin_selections_path(testing_id: article.id), method: :post %>
-<% end %>
+<div class="container-fluid">
+
+   <% @articles.in_groups_of(2, false) do |group| %>
+      <div class="row">
+         <% group.each do |u| %>
+            <% if u.image != nil %>
+             <div class="col-md-6 col-sm-12 article-bg " style="background-image: url(<%= u.image %>)">
+            <% else %>
+               <div class="col-md-6 col-sm-12 article-bg " style="background-image: url(/news_plus.png)">
+            <% end %>
+               <span><%= u.description %></span>
+            </div>
+         <% end %>
+      </div>
+   <% end %>
+</div>
+

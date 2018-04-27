@@ -27,7 +27,7 @@ class TestsController < ApplicationController
 	end
 
 	def time
-	
+
 		@content =parsed_content.css('.article-content').css('#article-body').css('.padded')
 	end
 	def espn
