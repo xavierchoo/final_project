@@ -9,8 +9,7 @@ class AdminsController < ApplicationController
 	def create
 		
 	 	selected = Article.find(params[:article_id])
-	 	new_select = WelcomeIndex.new(article_id: selected.id, user_id: current_user.id)
-		if new_select.save
+	 	if selected.update(published: true)
 			redirect_to admin_index_path
 		else
 			redirect_to root_path
