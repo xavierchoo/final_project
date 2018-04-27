@@ -15,7 +15,7 @@
             <% group.each do |u| %>
 
                <div class="col-md-6 col-sm-12" style="padding: 0;">
-                  <%= link_to welcome_path(link: u.link) do %>
+                  <%= link_to article_page_path(link: u.link) do %>
                      <div class="article-bg" style="background-image: url(<%= u.image.presence || '/news_plus.png' %>)">
                         <span><%= u.description %></span>
                      </div>
