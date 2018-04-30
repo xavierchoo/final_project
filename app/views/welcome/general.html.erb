@@ -5,12 +5,12 @@
     time_formatted = time.strftime("%B") + " " + time.strftime("%d")
 %>
 
-<div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
+<!-- <div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
 
    <span> <%=@articles[1].description %></span>
-</div>
+</div> -->
 
-<div class="container">
+<div class="container editors-choice-general">
   <div class="row mb-2 ">
   <div class="col-md-12 editors-choice">
     <p>Editor's choice</p>
@@ -44,7 +44,7 @@
       <div class="card-body d-flex flex-column align-items-start third-flex">
         <strong class="d-inline-block mb-2 text-primary"><%= u.category %></strong>
         <div class="mb-1 text-muted"><%= time_formatted2 %></div>
-        <p class="card-text mb-auto card-text-custom"><%= (u.description).first(90) %></p>
+        <p class="card-text mb-auto card-text-custom"><%= (u.description).first(90) %> ...</p>
       </div>
         <img class="card-img-right-2 flex-auto d-none d-lg-block" src="<%= u.image.presence || 'news_plus.png' %>" alt="Card image cap">
     </div>
