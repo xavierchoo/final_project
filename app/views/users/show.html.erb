@@ -5,3 +5,6 @@
 
 <%= current_user.description %>
 
+<% @user_comment.each do |x| %>
+<br/><%= x.comment %><br/>
+<% end %>
