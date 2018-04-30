@@ -1,14 +1,14 @@
 class WelcomeController < ApplicationController
 
-	def index 
+	def index
 
 	  if params[:search]
 	    @articles = Article.search(params[:search]).order("created_at DESC")
 	  elsif(params.has_key?(:category) )
 	    @articles = Article.where(category: params[:category], published: false)
-	  else 
+	  else
 	  	@articles = Article.where(published: false)
-	  end	
+	  end
 	end
 
 	def article
@@ -62,14 +62,14 @@ class WelcomeController < ApplicationController
 			@images = @image.map{|x| x.attr('src')}
 			@title = parsed_content.css('.article-header').css('h1').children
 			@paragraph = parsed_content.css('.article-content').css('#article-body').css('div.padded p').inner_text
-		end	
+		end
 	end
-	
+
 
 	def comment
 
 		article_link = params[:article_link]
-	
+
 		article_linking = Article.find_by(link: article_link)
 
 		@comment = Comment.new(comment_params)
@@ -82,30 +82,30 @@ class WelcomeController < ApplicationController
 		end
 	end
 
-	def search 
+	def search
 		if params[:search]
 		  @articles = Article.search(params[:search]).order("created_at DESC")
 		elsif(params.has_key?(:category) )
 		  @articles = Article.where(category: params[:category], published: false)
-		else 
+		else
 			@articles = Article.where(published: false)
-		end	
+		end
 	end
 
-	def general 
-		@articles= Article.where(category: "general")
+	def general
+		@articles= Article.where(category: "general").order("created_at DESC")
 	end
-	def health 
-		@articles= Article.where(category: "health")
+	def health
+		@articles= Article.where(category: "health").order("created_at DESC")
 	end
 	def technology
-		@articles= Article.where(category: "technology")
+		@articles= Article.where(category: "technology").order("created_at DESC")
 	end
 	def business
-		@articles= Article.where(category: "business")
+		@articles= Article.where(category: "business").order("created_at DESC")
 	end
 	def sport
-		@articles= Article.where(category: "sport")
+		@articles= Article.where(category: "sport").order("created_at DESC")
 	end
 
 	private
@@ -113,7 +113,7 @@ class WelcomeController < ApplicationController
 		params.require(:comment).permit(:link, :comment )
 	end
 
-	
+
 
 
 end
