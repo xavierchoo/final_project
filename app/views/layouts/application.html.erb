@@ -22,13 +22,24 @@
   <div class="collapse navbar-collapse" id="navbarsExample05">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" name="category" value="general" href="#">General</a>
+        <!-- <a class="nav-link" name="category" value="general" href="#">General</a> -->
+        <%= link_to "General", general_page_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" name="category" value="business" href="#">Business</a>
+        <!-- <a class="nav-link" name="category" value="general" href="#">General</a> -->
+        <%= link_to "Business", business_page_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" name="category" value="health" href="#">Health</a>
+        <!-- <a class="nav-link" name="category" value="general" href="#">General</a> -->
+        <%= link_to "Health", health_page_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <!-- <a class="nav-link" name="category" value="general" href="#">General</a> -->
+        <%= link_to "Technology", technology_page_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <!-- <a class="nav-link" name="category" value="general" href="#">General</a> -->
+        <%= link_to "Sport", sport_page_path, class: "nav-link" %>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">

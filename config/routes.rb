@@ -30,4 +30,10 @@ Rails.application.routes.draw do
   get "/article" => "welcome#article", as: "article_page"
   post "/article" => "welcome#comment", as: "comment_create"
   get "/search" => "welcome#search", as: "search"
+  get "/general" => "welcome#general", as: "general_page"
+  get "/business" => "welcome#business", as: "business_page"
+  get "/technology" => "welcome#technology", as: "technology_page"
+  get "/health" => "welcome#health", as: "health_page"
+  get "/sport" => "welcome#sport", as: "sport_page"
+ 
 end
