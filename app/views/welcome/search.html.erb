@@ -14,9 +14,13 @@
 <% end %>
 
 <%= button_to "Users page", user_path(id: current_user.id), method: :get %> 
+
+
 <% @articles.each do |article| %>
     <%= article.name %></br>
     <%= article.description %></br>
-    <%= button_to "Add article", admin_create_path(article_id: article.id), method: :post %>
+
+     <%= link_to article_page_path(link: article.link)%>
+
 <% end %>
-<%= button_to "Users page", user_path(id: current_user.id), method: :get %>
+

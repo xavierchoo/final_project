@@ -13,7 +13,6 @@ class WelcomeController < ApplicationController
 
 	def article
 		@show_comments = Comment.where(article_id: params[:article_id])
-		@comment = Comment.new
 		@linking = params[:link]
 		document = open(@linking)
 		source = params[:source]
