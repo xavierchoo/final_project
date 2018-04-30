@@ -2,6 +2,10 @@
     page = random_number.rand(0..3)
       link = @articles[2].image
 %>
+<%= form_tag(search_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search similar topic" %>
+<%= submit_tag "Search" %>
+<% end %>
  
       <form >
         <input type="radio" name="category" value="general" checked>general<br>

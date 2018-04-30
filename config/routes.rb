@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   post "/admin" => "admins#create", as: "admin_create"
   get "/article" => "welcome#article", as: "article_page"
   post "/article" => "welcome#comment", as: "comment_create"
+  get "/search" => "welcome#search", as: "search"
 end
