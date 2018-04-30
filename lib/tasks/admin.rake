@@ -16,6 +16,7 @@ task data: :environment do
     {q: 'general', sources: 'bbc-news', domains: 'bbc.co.uk'},
     {q: 'health', sources: 'bbc-news', domains: 'bbc.co.uk'},
     {q: 'science', sources: 'bbc-news', domains: 'bbc.co.uk'},
+    {q: 'sport', sources: 'bbc-news', domains: 'bbc.co.uk'},
   ]
 
 sources.each do |source|
