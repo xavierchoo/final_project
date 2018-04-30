@@ -22,5 +22,6 @@ Rails.application.routes.draw do
 
   get "/admin" => "admins#index", as: "admin_index"
   post "/admin" => "admins#create", as: "admin_create"
-  get "article" => "welcome#article", as: "article_page"
+  get "/article" => "welcome#article", as: "article_page"
+  post "/article" => "welcome#comment", as: "comment_create"
 end
