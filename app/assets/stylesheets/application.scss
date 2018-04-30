@@ -20,7 +20,10 @@ html,body{
    height: 100%;
 }
 body{
-  margin-top: 5%;
+  margin-top: 1%;
+}
+.hidden{
+  display: none;
 }
 .jumbotron{
   margin-top: 0px;
@@ -47,6 +50,19 @@ body{
    background-color: rgba(0, 0, 0, 0.6);
    font-family: 'Playfair Display', serif;
 }
+
+.dropdown-toggle::after {
+    display:none
+}
+.nav-item{
+  margin: 0px;
+}
+.dropdown.show{
+  margin: 0px;
+}
+.dropdown-menu.show{
+  margin-top:7px;
+}
 .article-bg span{
   position: absolute;
    bottom: 10%;
@@ -59,6 +75,12 @@ body{
    font-weight: 400;
    background-color: rgba(0, 0, 0, 0.6);
    font-family: 'Playfair Display', serif;
+}
+#search-form{
+  height: 50px;
+}
+.nav-link.dropdown-toggle{
+  margin-top: 5px;
 }
 
 .article-bg{
