@@ -87,6 +87,22 @@ class WelcomeController < ApplicationController
 		end	
 	end
 
+	def general 
+		@articles= Article.where(category: "general")
+	end
+	def health 
+		@articles= Article.where(category: "health")
+	end
+	def technology
+		@articles= Article.where(category: "technology")
+	end
+	def business
+		@articles= Article.where(category: "business")
+	end
+	def sport
+		@articles= Article.where(category: "sport")
+	end
+
 	private
 	def comment_params
 		params.require(:comment).permit(:link, :comment )

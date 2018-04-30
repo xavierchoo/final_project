@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :likes, only: [:create]
   resources :follows, only: [:create]
 
+  get 'welcome/index'
+  root 'welcome#index'
+
   get 'braintree/new'
   post 'braintree/checkout'
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
@@ -27,4 +30,10 @@ Rails.application.routes.draw do
   get "/article" => "welcome#article", as: "article_page"
   post "/article" => "welcome#comment", as: "comment_create"
   get "/search" => "welcome#search", as: "search"
+  get "/general" => "welcome#general", as: "general_page"
+  get "/business" => "welcome#business", as: "business_page"
+  get "/technology" => "welcome#technology", as: "technology_page"
+  get "/health" => "welcome#health", as: "health_page"
+  get "/sport" => "welcome#sport", as: "sport_page"
+ 
 end
