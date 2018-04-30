@@ -2,6 +2,10 @@ class UsersController < Clearance::UsersController
 
 	def show
 		@user = User.find(params[:id])
+		@follower = @user.get_followers
+		@first = @follower.first
+		@follower_id = User.where(id: @first)
+		@following = @user.get_following
 	end
 
 	def create
@@ -24,7 +28,6 @@ class UsersController < Clearance::UsersController
 		@user.update(edit_params)
 		redirect_to admins_path
 	end
-
 
 	private
 

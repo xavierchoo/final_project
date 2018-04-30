@@ -1,7 +1,12 @@
 
-<%= image_tag current_user.profile_pic_url.to_s %>
+<%= image_tag @user.profile_pic_url.to_s %>
 
-<%= link_to "edit", edit_user_path(id: current_user.id) %>
+<%= link_to "edit", edit_user_path(id: @user.id) %>
 
-<%= current_user.description %>
+<%= @user.description %>
 
+<%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
+
+Follower <%= @follower.count %><br/>
+
+Following <%= @following.count %></br>

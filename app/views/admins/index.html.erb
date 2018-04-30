@@ -2,6 +2,7 @@
 <% @articles.each do |article| %>
     <%= article.name %></br>
     <%= article.description %></br>
-    <%= button_to "Add article", admin_create_path(article_id: article.id), method: :post %>
+    <%= article.likes.count %></br>
+    <%= button_to "Add article", admin_create_path(article_id: article.id), method: :post %></br>
+    <%= button_to "like",  likes_path(article_id: article.id), method: :post %>
 <% end %>
-<%= button_to "Users page", user_path(id: current_user.id), method: :get %>
