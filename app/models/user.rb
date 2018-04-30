@@ -2,7 +2,7 @@ class User < ApplicationRecord
   include Clearance::User
   has_many :likes
   has_many :follows
-  belongs_to :follow
+  belongs_to :follow, optional: true
 
   mount_uploader :profile_pic, ProfilePicUploader
   validates :email, presence: true
