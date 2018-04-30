@@ -18,6 +18,7 @@
 
 html,body{
    height: 100%;
+   font-family: 'Playfair Display', serif;
 }
 body{
   margin-top: 52.69px;
@@ -261,4 +262,48 @@ body{
   margin-left: 35%;
   width: 90%;
   height: auto;
+}
+.card-img-right-flex {
+  height: 400px;
+
+  border-radius: 0 3px 3px 0;
+  position: absolute;
+  right: 0;
+}
+.card-img-right-2 {
+  height: 200px;
+
+}
+.first-250{
+  height: 400px;
+  border: none;
+  position: relative;
+}
+
+.second-flex{
+  height: 85%;
+  margin-top: 3%;
+  margin-left: 5%;
+  z-index: 2;
+  background-color: #fff;
+  position: absolute;
+  width: 36%;
+  font-weight: bold;
+  font-family: 'Playfair Display', serif;
+  // border: 2px solid black;
+
+}
+
+.third-flex{
+  background-color: #fff;
+  width: 50%;
+
+  // border: 2px solid black;
+
+}
+.editors-choice{
+  margin: 0 auto;
+}
+.card-text-custom{
+  font-size: 12px;
 }
