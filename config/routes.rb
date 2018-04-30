@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :likes, only: [:create]
   resources :follows, only: [:create]
 
+  get 'welcome/index'
+  root 'welcome#index'
+
   get 'braintree/new'
   post 'braintree/checkout'
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
