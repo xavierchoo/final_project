@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :testings
   resources :articles
   resources :users, only: [:index, :show, :update, :edit]
+  resources :likes, only: [:create]
+  resources :follows, only: [:create]
 
   get 'braintree/new'
   post 'braintree/checkout'
