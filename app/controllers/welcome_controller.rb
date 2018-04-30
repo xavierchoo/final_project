@@ -1,12 +1,14 @@
 class WelcomeController < ApplicationController
 
-	def index
-		 if(params.has_key?(:category) )
-		    @articles = Article.where(category: params[:category], published: true)
-		else 
-			@articles = Article.where(published: true)
-		end
-		
+	def index 
+
+	  if params[:search]
+	    @articles = Article.search(params[:search]).order("created_at DESC")
+	  elsif(params.has_key?(:category) )
+	    @articles = Article.where(category: params[:category], published: false)
+	  else 
+	  	@articles = Article.where(published: false)
+	  end	
 	end
 
 	def article
@@ -76,10 +78,22 @@ class WelcomeController < ApplicationController
 		end
 	end
 
+	def search 
+		if params[:search]
+		  @articles = Article.search(params[:search]).order("created_at DESC")
+		elsif(params.has_key?(:category) )
+		  @articles = Article.where(category: params[:category], published: false)
+		else 
+			@articles = Article.where(published: false)
+		end	
+	end
+
 	private
 	def comment_params
 		params.require(:comment).permit(:link, :comment )
 	end
+
+	
 
 
 end
