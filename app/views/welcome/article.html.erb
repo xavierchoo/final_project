@@ -1,1 +1,10 @@
 </br></br><h1><%= @title %></h1>
+
+<%= form_for @comment, url: comment_create_path(article_link: @linking), html: {class: "nifty_form"} do |f| %>
+
+  <%= f.text_area :comment, size: "60x12" %>
+  <%= button_to "Add comment", method: :post %>
+<% end %>
+<% @show_comments.each do |x| %>
+<%= x.comment %></br>
+<% end %>
