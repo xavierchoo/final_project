@@ -2,6 +2,9 @@ class UsersController < Clearance::UsersController
 
 	def show
 		@user = User.find(params[:id])
+
+		@follower = @user.get_followers
+		@following = @user.get_following
 		@user_comment = Comment.where(user_id: params[:id])
 	end
 
@@ -25,8 +28,6 @@ class UsersController < Clearance::UsersController
 		@user.update(edit_params)
 		redirect_to admins_path
 	end
-
-
 
 	private
 

@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_28_091529) do
+
+ActiveRecord::Schema.define(version: 2018_04_30_030947) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +41,23 @@ ActiveRecord::Schema.define(version: 2018_04_28_091529) do
     t.datetime "updated_at", null: false
   end
 
+
+  create_table "follows", force: :cascade do |t|
+    t.string "follower_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_follows_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "article_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_likes_on_article_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+
   create_table "comments", force: :cascade do |t|
     t.bigint "article_id"
     t.bigint "user_id"
@@ -48,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_04_28_091529) do
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+
   end
 
   create_table "testings", force: :cascade do |t|
@@ -90,6 +109,9 @@ ActiveRecord::Schema.define(version: 2018_04_28_091529) do
 
   add_foreign_key "admin_selections", "testings"
   add_foreign_key "admin_selections", "users"
+  add_foreign_key "follows", "users"
+  add_foreign_key "likes", "articles"
+  add_foreign_key "likes", "users"
   add_foreign_key "welcome_indices", "articles"
   add_foreign_key "welcome_indices", "users"
 end

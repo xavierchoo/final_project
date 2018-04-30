@@ -1,9 +1,8 @@
 class AdminsController < ApplicationController
-	# before_action :check_user
-	# before_action :check_admin
+	before_action :check_user
+	before_action :check_admin
 
-	def index
-		
+	def index	
 		  if params[:search]
 		    @articles = Article.search(params[:search]).order("created_at DESC")
 		  elsif(params.has_key?(:category) )
@@ -11,12 +10,10 @@ class AdminsController < ApplicationController
 		  else 
 		  	@articles = Article.where(published: false)
 		  end
-		
 	end
 
 	
-	def create
-		
+	def create		
 	 	selected = Article.find(params[:article_id])
 	 	if selected.update(published: true)
 			redirect_to admin_index_path
@@ -25,8 +22,15 @@ class AdminsController < ApplicationController
 		end
 	end
 end
-	# def check_admin
-	# 	if !current_user.admin
-	# 		redirect_to root_path
-	# 	end
-	# end
+
+	def check_user
+		if !current_user
+		redirect_to "/"
+		end
+	end
+
+	def check_admin
+		if !current_user.admin
+			redirect_to "/"
+		end
+	end
