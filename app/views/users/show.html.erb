@@ -15,3 +15,11 @@ Following <%= @following.count %></br>
 <% @user_comment.each do |x| %>
 <br/><%= x.comment %><br/>
 <% end %>
+
+
+<% @user_bookmark.each do |x| %>
+	<% @bookmarks = Article.find_by(id: x.id) %>
+		<% @bookmarks.each do |c| %>
+		<%= c.link %><br/>
+		<%end%>
+<%end%>

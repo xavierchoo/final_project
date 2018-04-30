@@ -35,5 +35,5 @@ Rails.application.routes.draw do
   get "/technology" => "welcome#technology", as: "technology_page"
   get "/health" => "welcome#health", as: "health_page"
   get "/sport" => "welcome#sport", as: "sport_page"
- 
+  post "/bookmark" => "welcome#bookmark", as: "bookmark_create"
 end

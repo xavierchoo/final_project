@@ -6,6 +6,7 @@ class UsersController < Clearance::UsersController
 		@follower = @user.get_followers
 		@following = @user.get_following
 		@user_comment = Comment.where(user_id: params[:id])
+		@user_bookmark = Bookmark.where(user_id: params[:id])
 	end
 
 	def create

@@ -12,7 +12,9 @@ class WelcomeController < ApplicationController
 	end
 
 	def article
+		@bookmark = Bookmark.new
 		@show_comments = Comment.where(article_id: params[:article_id])
+		@comment = Comment.new
 		@linking = params[:link]
 		document = open(@linking)
 		source = params[:source]
@@ -61,20 +63,40 @@ class WelcomeController < ApplicationController
 
 	end
 
+	def bookmark
+		article_link = params[:article_link]
+	
+		article_linking = Article.find_by(link: article_link)
+		if Bookmark.where(user_id: current_user.id , article_id: article_linking.id).exists?
+		else
+			@bookmark = Bookmark.new
+			@bookmark.user_id = current_user.id
+			@bookmark.article_id = article_linking.id
+
+			if @bookmark.save
+				 redirect_back(fallback_location: article_page_path)
+			else
+				redirect_to '/error'
+			end
+		end
+	end
+
 	def comment
 
 		article_link = params[:article_link]
 	
 		article_linking = Article.find_by(link: article_link)
-
-		@comment = Comment.new(comment_params)
-		@comment.user_id = current_user.id
-		@comment.article_id = article_linking.id
-		if @comment.save
-			 redirect_back(fallback_location: article_page_path)
+		
 		else
-			redirect_to '/error'
-		end
+			@comment = Comment.new(comment_params)
+			@comment.user_id = current_user.id
+			@comment.article_id = article_linking.id
+			if @comment.save
+				 redirect_back(fallback_location: article_page_path)
+			else
+				redirect_to '/error'
+			end
+
 	end
 
 	def search 

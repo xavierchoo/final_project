@@ -1,5 +1,5 @@
 </br></br><h1><%= @title %></h1>
-
+<%= button_to "Bookmark", bookmark_create_path(article_link: @linking) , method: :post %>
 <%= form_for @comment, url: comment_create_path(article_link: @linking), html: {class: "nifty_form"} do |f| %>
 
   <%= f.text_area :comment, size: "60x12" %>
