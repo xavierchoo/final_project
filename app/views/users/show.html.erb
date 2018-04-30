@@ -5,8 +5,13 @@
 
 <%= @user.description %>
 
+
 <%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
 
 Follower <%= @follower.count %><br/>
 
 Following <%= @following.count %></br>
+
+<% @user_comment.each do |x| %>
+<br/><%= x.comment %><br/>
+<% end %>

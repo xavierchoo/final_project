@@ -2,8 +2,14 @@ class AdminsController < ApplicationController
 	before_action :check_user
 	before_action :check_admin
 
-	def index
-		@articles = Article.all
+	def index	
+		  if params[:search]
+		    @articles = Article.search(params[:search]).order("created_at DESC")
+		  elsif(params.has_key?(:category) )
+		    @articles = Article.where(category: params[:category], published: false)
+		  else 
+		  	@articles = Article.where(published: false)
+		  end
 	end
 
 	
