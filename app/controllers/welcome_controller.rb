@@ -12,8 +12,13 @@ class WelcomeController < ApplicationController
 	end
 
 	def article
+		@art = Article.find(params[:article_id])
+		@new_view = @art.views + 1
+		@art.update(views: @new_view)
+
 		@show_comments = Comment.where(article_id: params[:article_id])
 		@linking = params[:link]
+		@comment = Comment.new
 		document = open(@linking)
 		source = params[:source]
 		content = document.read
@@ -58,8 +63,8 @@ class WelcomeController < ApplicationController
 			@title = parsed_content.css('.article-header').css('h1').children
 			@paragraph = parsed_content.css('.article-content').css('#article-body').css('div.padded p').inner_text
 		end	
-
 	end
+	
 
 	def comment
 
