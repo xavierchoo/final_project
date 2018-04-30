@@ -8,11 +8,11 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   def get_followers
-  	Follow.where(follower_id: self.id)
+  	Follow.where(user_id: self.id)
   end
 
   def get_following
-  	Follow.where(user_id: self.id)
+    Follow.where(follower_id: self.id)
   end
 
 end
