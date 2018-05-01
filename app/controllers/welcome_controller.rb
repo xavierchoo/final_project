@@ -48,7 +48,7 @@ class WelcomeController < ApplicationController
 					count += 1
 					y += "."
 
-					if count == 5
+					if count == 6
 						y += "<br /><br />&emsp;&emsp;"
 						count=0
 					end
@@ -78,18 +78,63 @@ class WelcomeController < ApplicationController
 			end
 		elsif source == "ABC News"
 			@title = parsed_content.css('.container').css('.article-header h1').children
-			@description = parsed_content.css('.container').css('.article-body').css('.article-copy p').inner_text
+			@paragraph = parsed_content.css('.container').css('.article-body').css('.article-copy p').inner_text
+
+			@new_paragraph = @paragraph.split(".")
+			count = 0
+
+			@paragraph = @new_paragraph.map { |y|
+				count += 1
+				y += "."
+
+				if count == 6
+					y += "<br /><br />&emsp;&emsp;"
+					count=0
+				end
+				y
+			 }
+			 @paragraph = @paragraph.join(" ")
+
+
 			@image = parsed_content.css('.container').css('.article-body').css('picture').css('img')
 			@images = @image.map{|x| x.attr('src')}
 		elsif source == "The New York Times"
 			@title = parsed_content.css('#story').css('h1').children
 			@image = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
 			@paragraph =  parsed_content.css('#story').css('.story-body-text.story-content').css('p').inner_text
+			@new_paragraph = @paragraph.split(".")
+			count = 0
+
+			@paragraph = @new_paragraph.map { |y|
+				count += 1
+				y += "."
+
+				if count == 6
+					y += "<br /><br />&emsp;&emsp;"
+					count=0
+				end
+				y
+			 }
+			 @paragraph = @paragraph.join(" ")
 		elsif source == "time"
 			@image = parsed_content.css('.article-content').css('.image-wrapper').css('img')
 			@images = @image.map{|x| x.attr('src')}
 			@title = parsed_content.css('.article-header').css('h1').children
 			@paragraph = parsed_content.css('.article-content').css('#article-body').css('div.padded p').inner_text
+			@new_paragraph = @paragraph.split(".")
+			count = 0
+
+			@paragraph = @new_paragraph.map { |y|
+				count += 1
+				y += "."
+
+				if count == 6
+					y += "<br /><br />&emsp;&emsp;"
+					count=0
+				end
+				y
+			 }
+			 @paragraph = @paragraph.join(" ")
 		end
 	end
 
