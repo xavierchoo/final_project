@@ -84,28 +84,29 @@ class WelcomeController < ApplicationController
 
 	def search
 		if params[:search]
-		  @articles = Article.search(params[:search]).order("created_at DESC")
+		  @articles = Article.search(params[:search]).order("created_at DESC").page(params[:page])
 		elsif(params.has_key?(:category) )
-		  @articles = Article.where(category: params[:category], published: false)
+		  @articles = Article.where(category: params[:category], published: false).page(params[:page])
 		else
-			@articles = Article.where(published: false)
+			@articles = Article.where(published: false).page(params[:page])
 		end
 	end
 
 	def general
-		@articles= Article.where(category: "general").order("created_at DESC")
+		@articles= Article.where(category: "general").order("created_at DESC").page(params[:page])
 	end
 	def health
-		@articles= Article.where(category: "health").order("created_at DESC")
+		@articles= Article.where(category: "health").order("created_at DESC").page(params[:page])
 	end
 	def technology
-		@articles= Article.where(category: "technology").order("created_at DESC")
+		@articles2= Article.all
+		@articles= Article.where(category: "technology").order("created_at DESC").page(params[:page])
 	end
 	def business
-		@articles= Article.where(category: "business").order("created_at DESC")
+		@articles= Article.where(category: "business").order("created_at DESC").page(params[:page])
 	end
 	def sport
-		@articles= Article.where(category: "sport").order("created_at DESC")
+		@articles= Article.where(category: "sport").order("created_at DESC").page(params[:page])
 	end
 
 	private
