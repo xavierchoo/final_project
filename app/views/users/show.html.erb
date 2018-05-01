@@ -13,13 +13,13 @@ Follower <%= @follower.count %><br/>
 Following <%= @following.count %></br>
 
 <% @user_comment.each do |x| %>
-<br/><%= x.comment %><br/>
+<%= x.comment %><br/>
 <% end %>
 
 
 <% @user_bookmark.each do |x| %>
-	<% @bookmarks = Article.find_by(id: x.id) %>
-		<% @bookmarks.each do |c| %>
-		<%= c.link %><br/>
-		<%end%>
+	<% bookmark_links = Article.where(id: x.article_id)%>
+	<% bookmark_links.each do |x| %>
+	<%= x.link%>
+	<% end %>
 <%end%>

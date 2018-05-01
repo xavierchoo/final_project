@@ -10,7 +10,8 @@
 
 <hr class="index-hr">
 
-<!-- <div class="container-fluid">
+ <div class="container-fluid">
+<%= button_to "Users page", user_path(id: current_user.id), method: :get %> 
    <% @articles.in_groups_of(2, false) do |group| %>
       <div class="row">
             <% group.each do |u| %>
@@ -27,4 +28,4 @@
          <% end %>
       </div>
    <% end %>
-</div> -->
+</div> 
