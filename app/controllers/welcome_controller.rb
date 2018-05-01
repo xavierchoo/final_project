@@ -18,8 +18,20 @@ class WelcomeController < ApplicationController
 
 		@show_comments = Comment.where(article_id: params[:article_id])
 		@linking = params[:link]
+		linkcount = @linking[0..4]
+
+		if linkcount == 'http:'
+			count = @linking.length
+			example = @linking[5..count]
+			example2 = 'https:'+ example
+			document = open(example2)
+
+		else
+			document = open(@linking)
+		end
+
 		@comment = Comment.new
-		document = open(@linking)
+
 		source = params[:source]
 		content = document.read
 		parsed_content = Nokogiri::HTML(content)
@@ -28,6 +40,22 @@ class WelcomeController < ApplicationController
 			if !parsed_content.css('.container').empty?
 				@title = parsed_content.css('.story-body').css('.story-body__h1').children
 				@paragraph = parsed_content.css('.story-body').css('.story-body__inner p').inner_text
+
+				@new_paragraph = @paragraph.split(".")
+				count = 0
+
+				@paragraph = @new_paragraph.map { |y|
+					count += 1
+					y += "."
+
+					if count == 5
+						y += "<br /><br />&emsp;&emsp;"
+						count=0
+					end
+					y
+				 }
+				 @paragraph = @paragraph.join(" ")
+
 				@images = []
 				@image = parsed_content.css('.story-body').css('.story-body__inner').css('.image-and-copyright-container')
 				@image.each {|x|  x.css(".js-delayed-image-load").each {|x| @images <<  x.attr("data-src")}}
