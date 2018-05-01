@@ -31,7 +31,7 @@
       </li>
       <li class="nav-item">
         <!-- <a class="nav-link" name="category" value="general" href="#">General</a> -->
-        <%= link_to "Health", health_page_path, class: "nav-link" %>
+        <%= link_to "Lifestyle", health_page_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <!-- <a class="nav-link" name="category" value="general" href="#">General</a> -->
@@ -39,7 +39,7 @@
       </li>
       <li class="nav-item">
         <!-- <a class="nav-link" name="category" value="general" href="#">General</a> -->
-        <%= link_to "Sport", sport_page_path, class: "nav-link" %>
+        <%= link_to "Sports", sport_page_path, class: "nav-link" %>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -53,6 +53,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog" style="font-size:1.7em; color:#fff;"></i></a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown05">
           <% if signed_in? %>
+              <%= link_to "Profile", user_path(id: current_user.id), class: "dropdown-item" %>
               <%= link_to "Sign out", sign_out_path, method: :delete, class: "dropdown-item" %>
           <% else %>
                 <%= link_to "Sign up", sign_up_path, class: "dropdown-item" %>
