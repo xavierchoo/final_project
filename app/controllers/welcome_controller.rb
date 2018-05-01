@@ -87,7 +87,7 @@ class WelcomeController < ApplicationController
 	
 		article_linking = Article.find_by(link: article_link)
 		
-		else
+	
 			@comment = Comment.new(comment_params)
 			@comment.user_id = current_user.id
 			@comment.article_id = article_linking.id
@@ -96,7 +96,6 @@ class WelcomeController < ApplicationController
 			else
 				redirect_to '/error'
 			end
-
 	end
 
 	def search 

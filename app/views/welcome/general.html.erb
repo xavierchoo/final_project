@@ -1,27 +1,68 @@
-<% random_number = Random.new
+<%  random_number = Random.new
     page = random_number.rand(0..3)
-      link = @articles[2].image
+    link = @articles[1].image
+    time = @articles[1].created_at
+    time_formatted = time.strftime("%B") + " " + time.strftime("%d")
 %>
-<%= form_tag(search_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search similar topic" %>
-<%= submit_tag "Search" %>
-<% end %>
- 
 
-<div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
+<!-- <div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
 
-   <span> <%=@articles[2].description %></span> 
+   <span> <%=@articles[1].description %></span>
+</div> -->
+
+<div class="container editors-choice-general">
+  <div class="row mb-2 ">
+  <div class="col-md-12 editors-choice">
+    <p>Editor's choice</p>
+    <div class="card flex-md-row mb-4 box-shadow h-md-250 first-250">
+      <div class="card-body d-flex flex-column align-items-start second-flex">
+        <strong class="d-inline-block mb-2 text-primary"><%= @articles[1].category %></strong>
+        <h3 class="mb-0">
+          <a class="text-dark" href="#">Featured post</a>
+        </h3>
+        <div class="mb-1 text-muted"><%= time_formatted %></div>
+        <p class="card-text mb-auto"><%=@articles[1].description %></p>
+        <a href="#">Continue reading</a>
+      </div>
+      <img class="card-img-right flex-auto d-none d-lg-block card-img-right-flex" src="<%= link %>" alt="Card image cap">
+    </div>
+  </div>
+</div>
 </div>
 
-<div class="container-fluid">
+<div class="container">
+  <% @articles.in_groups_of(2, false) do |group| %>
+  <div class="row mb-2">
+    <% group.each do |u| %>
+    <%
+        link2 = u.image
+        time2 = u.created_at
+        time_formatted2 = time2.strftime("%B") + " " + time2.strftime("%d")
+    %>
+  <div class="col-md-6">
+    <div class="card flex-md-row mb-6 box-shadow h-md-250">
+      <div class="card-body d-flex flex-column align-items-start third-flex">
+        <strong class="d-inline-block mb-2 text-primary"><%= u.category %></strong>
+        <div class="mb-1 text-muted"><%= time_formatted2 %></div>
+        <p class="card-text mb-auto card-text-custom"><%= (u.description).first(90) %> ...</p>
+      </div>
+        <img class="card-img-right-2 flex-auto d-none d-lg-block" src="<%= u.image.presence || 'news_plus.png' %>" alt="Card image cap">
+    </div>
+  </div>
+  <% end %>
+</div>
+<% end %>
+</div>
+
+<!-- <div class="container-fluid">
    <% @articles.in_groups_of(2, false) do |group| %>
       <div class="row">
             <% group.each do |u| %>
 
                <div class="col-md-6 col-sm-12" style="padding: 0;">
                   <%= link_to article_page_path(link: u.link , article_id: u.id , source: u.name) do %>
-                  
-            
+
+
                      <div class="article-bg" style="background-image: url(<%= u.image.presence || '/news_plus.png' %>)">
                         <span><%= u.description %></span>
                      </div>
@@ -30,4 +71,4 @@
          <% end %>
       </div>
    <% end %>
-</div>
+</div> -->
