@@ -16,7 +16,7 @@
           <%= link_to "Featured post",article_page_path(link: @articles[1].link , article_id: @articles[1].id , source: @articles[1].name), class:"text-dark" %>
         </h3>
         <div class="mb-1 text-muted"><%= time_formatted %></div>
-        <%= link_to (@articles[1].description).first(100),article_page_path(link: @articles[1].link , article_id: @articles[1].id , source: @articles[1].name), class: "card-text mb-auto text-dark" %>
+        <%= link_to @articles[1].description,article_page_path(link: @articles[1].link , article_id: @articles[1].id , source: @articles[1].name), class: "card-text mb-auto text-dark" %>
         <%= link_to "Continue reading",article_page_path(link: @articles[1].link , article_id: @articles[1].id , source: @articles[1].name) %>
       </div>
       <img class="card-img-right flex-auto d-none d-lg-block card-img-right-flex" src="<%= link %>" alt="Card image cap">

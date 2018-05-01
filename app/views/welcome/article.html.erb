@@ -1,10 +1,33 @@
-</br></br><h1><%= @title %></h1>
+<%
+  link = @art.image
 
-<%= form_for @comment, url: comment_create_path(article_link: @linking), html: {class: "nifty_form"} do |f| %>
+%>
+
+<div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
+  <span> <%=@art.description %></span>
+</div>
+
+
+ <center><h1><%= @title %></h1></center>
+
+<div class="container">
+  <div class="row">
+         <div class="col-md-3"></div>
+         <div class="col-md-6">
+
+            <p style="text-align: justify; margin-top:10%;" >&emsp;&emsp; <%= raw @paragraph %></p>
+         </div>
+         <div class="col-md-3"></div>
+ </div>
+</div>
+
+
+
+<!-- <%= form_for @comment, url: comment_create_path(article_link: @linking), html: {class: "nifty_form"} do |f| %>
 
   <%= f.text_area :comment, size: "60x12" %>
   <%= button_to "Add comment", method: :post %>
 <% end %>
 <% @show_comments.each do |x| %>
 <%= x.comment %></br>
-<% end %>
+<% end %> -->
