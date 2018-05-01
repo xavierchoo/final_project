@@ -1,17 +1,19 @@
 
-<%= image_tag @user.profile_pic_url.to_s %>
+<div class="container user-profile">
+  <%= image_tag @user.profile_pic_url.to_s %>
 
-<%= link_to "edit", edit_user_path(id: @user.id) %>
+  <%= link_to "edit", edit_user_path(id: @user.id) %>
 
-<%= @user.description %>
+  <%= @user.description %>
 
+    <%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
 
-<%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
+  Follower <%= @follower.count %><br/>
 
-Follower <%= @follower.count %><br/>
+  Following <%= @following.count %></br>
 
-Following <%= @following.count %></br>
+  <% @user_comment.each do |x| %>
+  <br/><%= x.comment %><br/>
+  <% end %>
 
-<% @user_comment.each do |x| %>
-<br/><%= x.comment %><br/>
-<% end %>
+</div>
