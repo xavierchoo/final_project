@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   get "/health" => "welcome#health", as: "health_page"
   get "/sport" => "welcome#sport", as: "sport_page"
  
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 end
