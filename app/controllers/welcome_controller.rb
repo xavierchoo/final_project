@@ -166,19 +166,23 @@ class WelcomeController < ApplicationController
 	end
 
 	def general
+		@articles2 = Article.all
 		@articles= Article.where(category: "general").order("created_at DESC").page(params[:page])
 	end
 	def health
 		@articles= Article.where(category: "health").order("created_at DESC").page(params[:page])
+		@articles2 = Article.all
 	end
 	def technology
-		@articles2= Article.all
+		@articles2 = Article.all
 		@articles= Article.where(category: "technology").order("created_at DESC").page(params[:page])
 	end
 	def business
+		@articles2 = Article.all
 		@articles= Article.where(category: "business").order("created_at DESC").page(params[:page])
 	end
 	def sport
+		@articles2 = Article.all
 		@articles= Article.where(category: "sport").order("created_at DESC").page(params[:page])
 	end
 

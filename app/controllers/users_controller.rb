@@ -24,9 +24,9 @@ class UsersController < Clearance::UsersController
 	end
 
 	def update
-		@user = current_user 
+		@user = current_user
 		@user.update(edit_params)
-		redirect_to admins_path
+		redirect_to user_path(id: current_user.id)
 	end
 
 	private
