@@ -1,9 +1,9 @@
-<%
+<%  random_number = Random.new
+    page = random_number.rand(0..3)
     link = @articles[1].image
     time = @articles[1].created_at
     time_formatted = time.strftime("%B") + " " + time.strftime("%d")
 %>
-
 
 <div class="container editors-choice-general">
   <div class="row mb-2 ">
@@ -13,11 +13,11 @@
       <div class="card-body d-flex flex-column align-items-start second-flex">
         <strong class="d-inline-block mb-2 text-primary"><%= @articles[1].category %></strong>
         <h3 class="mb-0">
-          <a class="text-dark" href="#">Featured post</a>
+          <%= link_to "Featured post",article_page_path(link: @articles[1].link , article_id: @articles[1].id , source: @articles[1].name), class:"text-dark" %>
         </h3>
         <div class="mb-1 text-muted"><%= time_formatted %></div>
-        <p class="card-text mb-auto"><%=@articles[1].description %></p>
-        <a href="#">Continue reading</a>
+        <%= link_to (@articles[1].description).first(100),article_page_path(link: @articles[1].link , article_id: @articles[1].id , source: @articles[1].name), class: "card-text mb-auto text-dark" %>
+        <%= link_to "Continue reading",article_page_path(link: @articles[1].link , article_id: @articles[1].id , source: @articles[1].name) %>
       </div>
       <img class="card-img-right flex-auto d-none d-lg-block card-img-right-flex" src="<%= link %>" alt="Card image cap">
     </div>
@@ -39,7 +39,7 @@
       <div class="card-body d-flex flex-column align-items-start third-flex">
         <strong class="d-inline-block mb-2 text-primary"><%= u.category %></strong>
         <div class="mb-1 text-muted"><%= time_formatted2 %></div>
-        <p class="card-text mb-auto card-text-custom"><%= (u.description).first(90) %> ...</p>
+        <%= link_to (u.description).first(90) + " ...",article_page_path(link: u.link , article_id: u.id , source: u.name), class: "card-text mb-auto card-text-custom text-dark" %>
       </div>
         <img class="card-img-right-2 flex-auto d-none d-lg-block" src="<%= u.image.presence || 'news_plus.png' %>" alt="Card image cap">
     </div>
@@ -48,6 +48,7 @@
 </div>
 <% end %>
 </div>
+
 
 <div class="pagninator">
   <div class="row">
