@@ -11,6 +11,9 @@ class WelcomeController < ApplicationController
 	  end
 	end	
 
+	def statistic
+	end
+	
 	def preference
 		@articles = Article.where(category: current_user.preference)
 	end

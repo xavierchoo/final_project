@@ -5,4 +5,7 @@ class PreferenceController < ApplicationController
 
 		redirect_to user_path(id: current_user.id)
 	end
+
+	def destroy
+	end
 end
