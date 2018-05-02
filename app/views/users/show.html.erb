@@ -1,48 +1,39 @@
-<% if current_user.id != @user.id %>
-<%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
-<% end %>
-
 <div class="container user-profile">
-  <%= image_tag @user.profile_pic_url.to_s %>
+  <div class="row">
+    <div class="col-3">
+			<div class="cardiB">
 
-  <%= link_to "edit", edit_user_path(id: @user.id) %>
+          <%= image_tag @user.profile_pic_url.to_s.presence || '/profile_avatar.png' , class: "avatar" %>
+					<h3><%= @user.first_name  + " " + @user.last_name%></h3>
 
-
-
-<% @user_comment.each do |x| %>
-<%= x.comment %><br/>
-<% end %>
-
-
-<% @user_bookmark.each do |x| %>
-	<% bookmark_links = Article.where(id: x.article_id)%>
-	<% bookmark_links.each do |x| %>
-	<%= x.link%>
-	<% end %>
-<%end%>
-
-  <% if current_user.id != @user.id %>
-    <%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
-  <% end %>
-
-  <%= @user.description %></br>
-  Follower <%= @follower.count %><br/>
-
-  Following <%= @following.count %></br>
-
+          <% if signed_in? %>
+					  <p class="titleB"><%= @user.description.presence || (link_to "Edit Description",edit_user_path(id: @user.id))  %></p>
+          <% else %>
+            <p class="titleB"><%= @user.description.presence || "News plus rocks!" %></p>
+          <% end %>
+					<p>
+            <% if signed_in? %>
+              <% if current_user.id != @user.id %>
+                <%= link_to "Follow", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post , class: "buttonB" %>
+              <% else %>
+                <%= link_to "Edit profile", edit_user_path(id: @user.id), class: "buttonB" %>
+              <% end %>
+            <% end %>
+          </p>
+          <hr>
+          <p>
+            Followers : <%=  @follower.count %>
+          </p>
+          <hr>
+          <p>
+            Following : <%= @following.count %>
+          </p><br>
+					</div>
+    </div>
+    <div class="col-6"></div>
+    <div class="col-3"></div>
+  </div>
   <% @user_comment.each do |x| %>
   <br/><%= x.comment %><br/>
   <% end %>
-
 </div>
-
-Buttons for selecting preferred categories
-<%= button_to "business", preference_update_path(preference: "business"), method: :patch %>
-<%= button_to "general", preference_update_path(preference: "general"), method: :patch %>
-<%= button_to "technology", preference_update_path(preference: "technology"), method: :patch %>
-<%= button_to "sport", preference_update_path(preference: "sport"), method: :patch %>
-<%= button_to "health", preference_update_path(preference: "health"), method: :patch %>
-<%= button_to "lifestyle", preference_update_path(preference: "lifestyle"), method: :patch %>
-
-<%= button_to "remove all selected", preference_delete_path, method: :delete %>
-

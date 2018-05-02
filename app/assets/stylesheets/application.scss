@@ -356,11 +356,11 @@ body{
   margin-left: 30%;
 }
 .user-profile{
-  margin-top:85px;
+  margin-top:150px;
 }
 .user-profile img{
-  height: 150px;
-  border: 5px solid #000;
+  height: 255px;
+  border: 3px solid black;
 }
 
 .image-library{
@@ -374,4 +374,39 @@ body{
 
 .ekko-lightbox-item.fade.in.show{
   margin: 0;
+}
+
+
+.cardiB {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.titleB {
+  color: grey;
+  font-size: 18px;
+}
+.buttonB {
+  text-decoration: none;
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.buttonB:hover{
+  text-decoration: none;
+  color: gold;
+}
+
+.avatar{
+  height: 100%;
 }
