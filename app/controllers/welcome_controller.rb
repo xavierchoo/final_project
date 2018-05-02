@@ -9,13 +9,6 @@ class WelcomeController < ApplicationController
 	  else
 	  	@articles = Article.where(published: false)
 	  end
-<<<<<<< Updated upstream
-=======
-	end
-
-	def preference
-		@articles = Article.where(category: current_user.preference)
->>>>>>> Stashed changes
 	end
 
 	def article
