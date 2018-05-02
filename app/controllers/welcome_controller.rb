@@ -15,11 +15,11 @@ class WelcomeController < ApplicationController
 	  # end
 
 	  end
-	end	
+	end
 
 	def statistic
 	end
-	
+
 	def preference
 		@articles = Article.where(category: current_user.preference)
 
@@ -96,7 +96,7 @@ class WelcomeController < ApplicationController
 				@images = []
 				@vidpic =[]
 				@title = parsed_content.css('.story-headline').inner_html
-				@paragraph = parsed_content.css('.story-body p').inner_html
+				@paragraph = parsed_content.css('#story-body p').inner_html
 				@images = parsed_content.css('.story-body').css('.sp-media-asset img').map {|i| i.attr('srcset')}
 
 			end

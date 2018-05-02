@@ -1,7 +1,7 @@
 <%  random_number = Random.new
     page = random_number.rand(0..3)
-    link = @articles2.find(481).image
-    time = @articles2.find(481).created_at
+    link = @articles2.find(619).image
+    time = @articles2.find(619).created_at
     time_formatted = time.strftime("%B") + " " + time.strftime("%d")
 %>
 
@@ -11,13 +11,13 @@
     <p>Editor's choice</p>
     <div class="card flex-md-row mb-4 box-shadow h-md-250 first-250">
       <div class="card-body d-flex flex-column align-items-start second-flex">
-        <strong class="d-inline-block mb-2 text-primary"><%= @articles2.find(481).category %></strong>
+        <strong class="d-inline-block mb-2 text-primary"><%= @articles2.find(619).category %></strong>
         <h3 class="mb-0">
-          <%= link_to "Featured post",article_page_path(link: @articles2.find(481).link , article_id: @articles2.find(481).id , source: @articles2.find(481).name), class:"text-dark" %>
+          <%= link_to "Featured post",article_page_path(link: @articles2.find(619).link , article_id: @articles2.find(619).id , source: @articles2.find(619).name), class:"text-dark" %>
         </h3>
         <div class="mb-1 text-muted"><%= time_formatted %></div>
-        <%= link_to @articles2.find(481).description,article_page_path(link: @articles2.find(481).link , article_id: @articles2.find(481).id , source: @articles2.find(481).name), class: "card-text mb-auto text-dark" %>
-        <%= link_to "Continue reading",article_page_path(link: @articles2.find(481).link , article_id: @articles2.find(481).id , source: @articles2.find(481).name) %>
+        <%= link_to @articles2.find(619).description,article_page_path(link: @articles2.find(619).link , article_id: @articles2.find(619).id , source: @articles2.find(619).name), class: "card-text mb-auto text-dark" %>
+        <%= link_to "Continue reading",article_page_path(link: @articles2.find(619).link , article_id: @articles2.find(619).id , source: @articles2.find(619).name) %>
       </div>
       <img class="card-img-right flex-auto d-none d-lg-block card-img-right-flex" src="<%= link %>" alt="Card image cap">
     </div>
