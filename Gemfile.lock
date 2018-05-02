@@ -82,6 +82,9 @@ GEM
       bcrypt
       email_validator (~> 1.4)
       rails (>= 3.1)
+    closure_tree (6.6.0)
+      activerecord (>= 4.1.0)
+      with_advisory_lock (>= 3.0.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -89,6 +92,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    commontator (5.1.0)
+      jquery-rails
+      rails (>= 5.0)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
     email_validator (1.6.0)
@@ -250,6 +256,8 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    with_advisory_lock (3.2.0)
+      activerecord (>= 3.2)
     xpath (3.0.0)
       nokogiri (~> 1.8)
 
@@ -266,7 +274,9 @@ DEPENDENCIES
   chartkick
   chromedriver-helper
   clearance
+  closure_tree
   coffee-rails (~> 4.2)
+  commontator (~> 5.1.0)
   figaro
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.1)
