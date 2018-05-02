@@ -78,10 +78,8 @@ gem 'omniauth'
 
 gem 'omniauth-google-oauth2'
 
-
 gem 'closure_tree'
 
 gem 'commontator', '~> 5.1.0'
 
 gem 'chartkick'
-
