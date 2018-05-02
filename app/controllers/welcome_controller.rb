@@ -100,7 +100,8 @@ class WelcomeController < ApplicationController
 			@images = @image.map{|x| x.attr('src')}
 		elsif source == "The New York Times"
 			@title = parsed_content.css('#story').css('h1').children
-			@image = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
+			@images =[]
+			@images = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
 			@paragraph =  parsed_content.css('#story').css('.story-body-text.story-content').css('p').inner_text
 			@new_paragraph = @paragraph.split(".")
 			count = 0
