@@ -73,10 +73,7 @@ gem 'braintree'
 gem "figaro"
 
 gem 'carrierwave', '~> 1.0'
-<<<<<<< HEAD
 
 gem 'omniauth'
 
 gem 'omniauth-google-oauth2'
-=======
->>>>>>> ba6757c80b19d20b586e7b4537196b1f2437d73e
