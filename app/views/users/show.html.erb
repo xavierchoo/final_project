@@ -1,12 +1,13 @@
 
-<%= image_tag @user.profile_pic_url.to_s %>
+<%= image_tag @user.profile_pic_url.to_s %></br>
 
-<%= link_to "edit", edit_user_path(id: @user.id) %>
+<%= link_to "edit", edit_user_path(id: @user.id) %></br>
 
-<%= @user.description %>
+<%= @user.description %></br>
 
-
+<% if current_user.id != @user.id %>
 <%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
+<% end %>
 
 Follower <%= @follower.count %><br/>
 

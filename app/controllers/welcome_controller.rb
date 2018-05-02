@@ -18,8 +18,20 @@ class WelcomeController < ApplicationController
 
 		@show_comments = Comment.where(article_id: params[:article_id])
 		@linking = params[:link]
+		linkcount = @linking[0..4]
+
+		if linkcount == 'http:'
+			count = @linking.length
+			example = @linking[5..count]
+			example2 = 'https:'+ example
+			document = open(example2)
+
+		else
+			document = open(@linking)
+		end
+
 		@comment = Comment.new
-		document = open(@linking)
+
 		source = params[:source]
 		content = document.read
 		parsed_content = Nokogiri::HTML(content)
@@ -28,6 +40,22 @@ class WelcomeController < ApplicationController
 			if !parsed_content.css('.container').empty?
 				@title = parsed_content.css('.story-body').css('.story-body__h1').children
 				@paragraph = parsed_content.css('.story-body').css('.story-body__inner p').inner_text
+
+				@new_paragraph = @paragraph.split(".")
+				count = 0
+
+				@paragraph = @new_paragraph.map { |y|
+					count += 1
+					y += "."
+
+					if count == 6
+						y += "<br /><br />&emsp;&emsp;"
+						count=0
+					end
+					y
+				 }
+				 @paragraph = @paragraph.join(" ")
+
 				@images = []
 				@image = parsed_content.css('.story-body').css('.story-body__inner').css('.image-and-copyright-container')
 				@image.each {|x|  x.css(".js-delayed-image-load").each {|x| @images <<  x.attr("data-src")}}
@@ -50,18 +78,63 @@ class WelcomeController < ApplicationController
 			end
 		elsif source == "ABC News"
 			@title = parsed_content.css('.container').css('.article-header h1').children
-			@description = parsed_content.css('.container').css('.article-body').css('.article-copy p').inner_text
+			@paragraph = parsed_content.css('.container').css('.article-body').css('.article-copy p').inner_text
+
+			@new_paragraph = @paragraph.split(".")
+			count = 0
+
+			@paragraph = @new_paragraph.map { |y|
+				count += 1
+				y += "."
+
+				if count == 6
+					y += "<br /><br />&emsp;&emsp;"
+					count=0
+				end
+				y
+			 }
+			 @paragraph = @paragraph.join(" ")
+
+
 			@image = parsed_content.css('.container').css('.article-body').css('picture').css('img')
 			@images = @image.map{|x| x.attr('src')}
 		elsif source == "The New York Times"
 			@title = parsed_content.css('#story').css('h1').children
 			@image = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
 			@paragraph =  parsed_content.css('#story').css('.story-body-text.story-content').css('p').inner_text
+			@new_paragraph = @paragraph.split(".")
+			count = 0
+
+			@paragraph = @new_paragraph.map { |y|
+				count += 1
+				y += "."
+
+				if count == 6
+					y += "<br /><br />&emsp;&emsp;"
+					count=0
+				end
+				y
+			 }
+			 @paragraph = @paragraph.join(" ")
 		elsif source == "time"
 			@image = parsed_content.css('.article-content').css('.image-wrapper').css('img')
 			@images = @image.map{|x| x.attr('src')}
 			@title = parsed_content.css('.article-header').css('h1').children
 			@paragraph = parsed_content.css('.article-content').css('#article-body').css('div.padded p').inner_text
+			@new_paragraph = @paragraph.split(".")
+			count = 0
+
+			@paragraph = @new_paragraph.map { |y|
+				count += 1
+				y += "."
+
+				if count == 6
+					y += "<br /><br />&emsp;&emsp;"
+					count=0
+				end
+				y
+			 }
+			 @paragraph = @paragraph.join(" ")
 		end
 	end
 
@@ -84,28 +157,29 @@ class WelcomeController < ApplicationController
 
 	def search
 		if params[:search]
-		  @articles = Article.search(params[:search]).order("created_at DESC")
+		  @articles = Article.search(params[:search]).order("created_at DESC").page(params[:page])
 		elsif(params.has_key?(:category) )
-		  @articles = Article.where(category: params[:category], published: false)
+		  @articles = Article.where(category: params[:category], published: false).page(params[:page])
 		else
-			@articles = Article.where(published: false)
+			@articles = Article.where(published: false).page(params[:page])
 		end
 	end
 
 	def general
-		@articles= Article.where(category: "general").order("created_at DESC")
+		@articles= Article.where(category: "general").order("created_at DESC").page(params[:page])
 	end
 	def health
-		@articles= Article.where(category: "health").order("created_at DESC")
+		@articles= Article.where(category: "health").order("created_at DESC").page(params[:page])
 	end
 	def technology
-		@articles= Article.where(category: "technology").order("created_at DESC")
+		@articles2= Article.all
+		@articles= Article.where(category: "technology").order("created_at DESC").page(params[:page])
 	end
 	def business
-		@articles= Article.where(category: "business").order("created_at DESC")
+		@articles= Article.where(category: "business").order("created_at DESC").page(params[:page])
 	end
 	def sport
-		@articles= Article.where(category: "sport").order("created_at DESC")
+		@articles= Article.where(category: "sport").order("created_at DESC").page(params[:page])
 	end
 
 	private
