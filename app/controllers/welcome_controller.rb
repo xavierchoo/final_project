@@ -8,10 +8,21 @@ class WelcomeController < ApplicationController
 	    @articles = Article.where(category: params[:category], published: false)
 	  else 
 	  	@articles = Article.where(published: false)
+
 	  end	
 	  # respond_to do |format|
 	  # 	format.json {render :json => @articles.to_json}
 	  # end
+
+	  end
+	end	
+
+	def statistic
+	end
+	
+	def preference
+		@articles = Article.where(category: current_user.preference)
+
 	end
 
 	def article
@@ -114,9 +125,19 @@ class WelcomeController < ApplicationController
 		elsif source == "The New York Times"
 			@images =[]
 			@title = parsed_content.css('#story').css('h1').children
-			@images = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
+			if !parsed_content.css('#story').css('.story-body').empty?
+				@images = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
+			elsif !parsed_content.css('#story').css('.ResponsiveMedia-container--G2JS6').empty?
+				@images = parsed_content.css('#story').css('.ResponsiveMedia-container--G2JS6 img').map{|x| x.attr('src')}
+			else
+			end
+			if !parsed_content.css('.story-body-text.story-content').empty?
+				@paragraph =  parsed_content.css('#story').css('.story-body-text.story-content').css('p').inner_text
+			elsif !parsed_content.css('#story').css('.StoryBodyCompanionColumn').empty?
+				@paragraph =  parsed_content.css('#story').css('.StoryBodyCompanionColumn').css('p').inner_text
+			else
+			end
 
-			@paragraph =  parsed_content.css('#story').css('.story-body-text.story-content').css('p').inner_text
 			@new_paragraph = @paragraph.split(".")
 			count = 0
 

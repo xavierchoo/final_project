@@ -1,23 +1,14 @@
-
-<<<<<<< HEAD
-<%= image_tag @user.profile_pic_url.to_s %></br>
-
-<%= link_to "edit", edit_user_path(id: @user.id) %></br>
-
-<%= @user.description %></br>
-
 <% if current_user.id != @user.id %>
 <%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
 <% end %>
-=======
+
 <div class="container user-profile">
   <%= image_tag @user.profile_pic_url.to_s %>
 
   <%= link_to "edit", edit_user_path(id: @user.id) %>
 
-  <%= @user.description %>
 
-<<<<<<< HEAD
+
 <% @user_comment.each do |x| %>
 <%= x.comment %><br/>
 <% end %>
@@ -29,13 +20,13 @@
 	<%= x.link%>
 	<% end %>
 <%end%>
-=======
+
   <% if current_user.id != @user.id %>
     <%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
   <% end %>
 
+  <%= @user.description %></br>
   Follower <%= @follower.count %><br/>
->>>>>>> cdc0fc543e6bf9eac2295292b13262a79629d32f
 
   Following <%= @following.count %></br>
 
@@ -44,4 +35,14 @@
   <% end %>
 
 </div>
->>>>>>> 21a96dbc5be593c889929ec4562570e16d7355f7
+
+Buttons for selecting preferred categories
+<%= button_to "business", preference_update_path(preference: "business"), method: :patch %>
+<%= button_to "general", preference_update_path(preference: "general"), method: :patch %>
+<%= button_to "technology", preference_update_path(preference: "technology"), method: :patch %>
+<%= button_to "sport", preference_update_path(preference: "sport"), method: :patch %>
+<%= button_to "health", preference_update_path(preference: "health"), method: :patch %>
+<%= button_to "lifestyle", preference_update_path(preference: "lifestyle"), method: :patch %>
+
+<%= button_to "remove all selected", preference_delete_path, method: :delete %>
+

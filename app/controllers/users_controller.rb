@@ -24,21 +24,16 @@ class UsersController < Clearance::UsersController
 		@user = current_user
 	end
 
-	def update
-		@user = current_user
-		@user.update(edit_params)
+	def update 
+		current_user.update(register_params)
+		current_user.save
 		redirect_to user_path(id: current_user.id)
 	end
 
 	private
 
 	def register_params
-		params.require(:user).permit(:first_name , :last_name , :username ,:email ,:password)
+		params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :profile_pic, :description)
 	end
 
-
-	private
-	def edit_params
-		params.require(:user).permit(:profile_pic)
-	end
 end
