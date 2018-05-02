@@ -21,4 +21,7 @@ def checkout
   end
 end
 
+  def show
+  end
+
 end

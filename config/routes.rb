@@ -44,5 +44,7 @@ Rails.application.routes.draw do
   patch "/preferenceupdate" => "preference#update", as: "preference_update"
   delete "/preferencedelete" => "preference#destroy", as: "preference_delete"
 
+  get "/subscribe" => "braintree#show", as: "subscribe"
+
 
 end
