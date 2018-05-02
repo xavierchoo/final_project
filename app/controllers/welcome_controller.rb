@@ -14,8 +14,13 @@ class WelcomeController < ApplicationController
 	  # 	format.json {render :json => @articles.to_json}
 	  # end
 
+
 	  # end
 	end
+
+
+	  # end
+
 
 	def statistic
 	end
@@ -32,11 +37,11 @@ class WelcomeController < ApplicationController
 		@new_view = @art.views + 1
 		@art.update(views: @new_view)
 		
-		commentid = CommentId.find_by(id: 1)
-		comment_id = commentid.id_key
-		@showreply = Replycomment.where(comment_id: comment_id)
+		# commentid = CommentId.find_by(id: 1)
+		# comment_id = commentid.id_key
+		# @showreply = Replycomment.where(comment_id: comment_id)
 		
-		@reply = Replycomment.new
+		# @reply = Replycomment.new
 		@bookmark = Bookmark.new
 		@show_comments = Comment.where(article_id: params[:article_id])
 
