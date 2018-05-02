@@ -29,3 +29,5 @@ Buttons for selecting preferred categories
 <%= button_to "sport", preference_update_path(preference: "sport"), method: :patch %>
 <%= button_to "health", preference_update_path(preference: "health"), method: :patch %>
 <%= button_to "lifestyle", preference_update_path(preference: "lifestyle"), method: :patch %>
+
+<%= button_to "remove all selected", preference_delete_path, method: :delete %>

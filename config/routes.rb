@@ -39,6 +39,10 @@ Rails.application.routes.draw do
  
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
+  get "/statistic" => "welcome#statistic", as: "preference_show"
+
   patch "/preferenceupdate" => "preference#update", as: "preference_update"
+  delete "/preferencedelete" => "preference#destroy", as: "preference_delete"
+
 
 end

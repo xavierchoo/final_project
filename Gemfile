@@ -77,3 +77,5 @@ gem 'carrierwave', '~> 1.0'
 gem 'omniauth'
 
 gem 'omniauth-google-oauth2'
+
+gem 'chartkick'
