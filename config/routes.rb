@@ -37,4 +37,12 @@ Rails.application.routes.draw do
   get "/sport" => "welcome#sport", as: "sport_page"
   post "/bookmark" => "welcome#bookmark", as: "bookmark_create"
   post "/article/reply" => "welcome#reply", as: "reply_create"
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+
+  resources :comments, only: [:index, :create]
+  get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
+
+
 end
+
+

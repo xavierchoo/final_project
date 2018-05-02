@@ -1,17 +1,23 @@
 
-<%= image_tag @user.profile_pic_url.to_s %>
+<<<<<<< HEAD
+<%= image_tag @user.profile_pic_url.to_s %></br>
 
-<%= link_to "edit", edit_user_path(id: @user.id) %>
+<%= link_to "edit", edit_user_path(id: @user.id) %></br>
 
-<%= @user.description %>
+<%= @user.description %></br>
 
-
+<% if current_user.id != @user.id %>
 <%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
+<% end %>
+=======
+<div class="container user-profile">
+  <%= image_tag @user.profile_pic_url.to_s %>
 
-Follower <%= @follower.count %><br/>
+  <%= link_to "edit", edit_user_path(id: @user.id) %>
 
-Following <%= @following.count %></br>
+  <%= @user.description %>
 
+<<<<<<< HEAD
 <% @user_comment.each do |x| %>
 <%= x.comment %><br/>
 <% end %>
@@ -23,3 +29,19 @@ Following <%= @following.count %></br>
 	<%= x.link%>
 	<% end %>
 <%end%>
+=======
+  <% if current_user.id != @user.id %>
+    <%= button_to "follow user", follows_path(follower_id: @user.id, user_id: current_user.id), method: :post %></br>
+  <% end %>
+
+  Follower <%= @follower.count %><br/>
+>>>>>>> cdc0fc543e6bf9eac2295292b13262a79629d32f
+
+  Following <%= @following.count %></br>
+
+  <% @user_comment.each do |x| %>
+  <br/><%= x.comment %><br/>
+  <% end %>
+
+</div>
+>>>>>>> 21a96dbc5be593c889929ec4562570e16d7355f7

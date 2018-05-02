@@ -6,14 +6,14 @@
   <input type="radio" name="category" value="entertainment">entertainment<br>
   <input type="radio" name="category" value="health">health<br>
   <button type="submit">Search</button>
-</form> 
+</form>
 
 <%= form_tag(admin_index_path, :method => "get", id: "search-form") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Search similar topic" %>
 <%= submit_tag "Search" %>
 <% end %>
 
-<%= button_to "Users page", user_path(id: current_user.id), method: :get %> 
+<%= button_to "Users page", user_path(id: current_user.id), method: :get %>
 <% @articles.each do |article| %>
     <%= article.name %></br>
     <%= article.description %></br>
