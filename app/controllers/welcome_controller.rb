@@ -14,7 +14,7 @@ class WelcomeController < ApplicationController
 	  # 	format.json {render :json => @articles.to_json}
 	  # end
 
-	  end
+	  # end
 	end
 
 	def statistic
@@ -195,21 +195,21 @@ class WelcomeController < ApplicationController
 		end
 	end
 
-	def reply
-		comment_id = params[:comment_id]
+	# def reply
+	# 	comment_id = params[:comment_id]
 
-		@showreply = Replycomment.where(comment_id: comment_id)
-		@id_key = CommentId.update(1, id_key: comment_id)
-		@reply = Replycomment.new(reply_params)
-		@reply.user_id = current_user.id
-		@reply.comment_id = comment_id
-		if @reply.save
-			 redirect_back(fallback_location: article_page_path + "?comment_id="  + comment_id )
+	# 	@showreply = Replycomment.where(comment_id: comment_id)
+	# 	@id_key = CommentId.update(1, id_key: comment_id)
+	# 	@reply = Replycomment.new(reply_params)
+	# 	@reply.user_id = current_user.id
+	# 	@reply.comment_id = comment_id
+	# 	if @reply.save
+	# 		 redirect_back(fallback_location: article_page_path + "?comment_id="  + comment_id )
 
-		else
-			redirect_to '/error'
-		end
-	end
+	# 	else
+	# 		redirect_to '/error'
+	# 	end
+	# end
 
 	def comment
 
