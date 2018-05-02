@@ -35,6 +35,14 @@ Rails.application.routes.draw do
   get "/technology" => "welcome#technology", as: "technology_page"
   get "/health" => "welcome#health", as: "health_page"
   get "/sport" => "welcome#sport", as: "sport_page"
+
+  post "/bookmark" => "welcome#bookmark", as: "bookmark_create"
+  post "/article/reply" => "welcome#reply", as: "reply_create"
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+
+  resources :comments, only: [:index, :create]
+  get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
+
   get "preference" => "welcome#preference", as: "preference_page"
  
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
@@ -47,4 +55,7 @@ Rails.application.routes.draw do
   get "/subscribe" => "braintree#show", as: "subscribe"
 
 
+
 end
+
+

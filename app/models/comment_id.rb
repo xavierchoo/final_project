@@ -1,0 +1,2 @@
+class CommentId < ApplicationRecord
+end

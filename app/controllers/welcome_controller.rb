@@ -1,13 +1,19 @@
 class WelcomeController < ApplicationController
 
-	def index
+	def index 
 
 	  if params[:search]
 	    @articles = Article.search(params[:search]).order("created_at DESC")
 	  elsif(params.has_key?(:category) )
 	    @articles = Article.where(category: params[:category], published: false)
-	  else
+	  else 
 	  	@articles = Article.where(published: false)
+
+	  end	
+	  # respond_to do |format|
+	  # 	format.json {render :json => @articles.to_json}
+	  # end
+
 	  end
 	end
 
@@ -16,14 +22,24 @@ class WelcomeController < ApplicationController
 
 	def preference
 		@articles = Article.where(category: current_user.preference)
+
 	end
 
 	def article
+
+
 		@art = Article.find(params[:article_id])
 		@new_view = @art.views + 1
 		@art.update(views: @new_view)
-
+		
+		commentid = CommentId.find_by(id: 1)
+		comment_id = commentid.id_key
+		@showreply = Replycomment.where(comment_id: comment_id)
+		
+		@reply = Replycomment.new
+		@bookmark = Bookmark.new
 		@show_comments = Comment.where(article_id: params[:article_id])
+
 		@linking = params[:link]
 		linkcount = @linking[0..4]
 
@@ -69,6 +85,7 @@ class WelcomeController < ApplicationController
 				@vidpic =[]
 				@vidpic = parsed_content.css('.story-body').css('.story-body__inner').css('.player-with-placeholder').css('.media-placeholder.player-with-placeholder__image')
 				@vidpictures = @vidpic.map {|i| i.attr('src')}
+			
 			elsif !parsed_content.css('.vxp-media__container').empty?
 				@images = []
 				@vidpic =[]
@@ -106,8 +123,8 @@ class WelcomeController < ApplicationController
 			@image = parsed_content.css('.container').css('.article-body').css('picture').css('img')
 			@images = @image.map{|x| x.attr('src')}
 		elsif source == "The New York Times"
-			@title = parsed_content.css('#story').css('h1').children
 			@images =[]
+			@title = parsed_content.css('#story').css('h1').children
 			if !parsed_content.css('#story').css('.story-body').empty?
 				@images = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
 			elsif !parsed_content.css('#story').css('.ResponsiveMedia-container--G2JS6').empty?
@@ -120,6 +137,7 @@ class WelcomeController < ApplicationController
 				@paragraph =  parsed_content.css('#story').css('.StoryBodyCompanionColumn').css('p').inner_text
 			else
 			end
+
 			@new_paragraph = @paragraph.split(".")
 			count = 0
 
@@ -139,6 +157,7 @@ class WelcomeController < ApplicationController
 			@images = @image.map{|x| x.attr('src')}
 			@title = parsed_content.css('.article-header').css('h1').children
 			@paragraph = parsed_content.css('.article-content').css('#article-body').css('div.padded p').inner_text
+
 			@new_paragraph = @paragraph.split(".")
 			count = 0
 
@@ -157,26 +176,63 @@ class WelcomeController < ApplicationController
 	end
 
 
-	def comment
 
+	def bookmark
 		article_link = params[:article_link]
-
+	
 		article_linking = Article.find_by(link: article_link)
+		if Bookmark.where(user_id: current_user.id , article_id: article_linking.id).exists?
+		else
+			@bookmark = Bookmark.new
+			@bookmark.user_id = current_user.id
+			@bookmark.article_id = article_linking.id
 
-		@comment = Comment.new(comment_params)
-		@comment.user_id = current_user.id
-		@comment.article_id = article_linking.id
-		if @comment.save
-			 redirect_back(fallback_location: article_page_path)
+			if @bookmark.save
+				 redirect_back(fallback_location: article_page_path)
+			else
+				redirect_to '/error'
+			end
+		end
+	end
+
+	def reply
+		comment_id = params[:comment_id]
+
+		@showreply = Replycomment.where(comment_id: comment_id)
+		@id_key = CommentId.update(1, id_key: comment_id)
+		@reply = Replycomment.new(reply_params)
+		@reply.user_id = current_user.id
+		@reply.comment_id = comment_id
+		if @reply.save
+			 redirect_back(fallback_location: article_page_path + "?comment_id="  + comment_id )
+
 		else
 			redirect_to '/error'
 		end
 	end
 
-	def search
+	def comment
+
+		article_link = params[:article_link]
+	
+		article_linking = Article.find_by(link: article_link)
+		
+	
+			@comment = Comment.new(comment_params)
+			@comment.user_id = current_user.id
+			@comment.article_id = article_linking.id
+			if @comment.save
+				 redirect_back(fallback_location: article_page_path)
+			else
+				redirect_to '/error'
+			end
+	end
+
+	def search 
 		if params[:search]
 		  @articles = Article.search(params[:search]).order("created_at DESC").page(params[:page])
 		elsif(params.has_key?(:category) )
+
 		  @articles = Article.where(category: params[:category], published: false).page(params[:page])
 		else
 			@articles = Article.where(published: false).page(params[:page])
@@ -202,6 +258,7 @@ class WelcomeController < ApplicationController
 	def sport
 		@articles2 = Article.all
 		@articles= Article.where(category: "sport").order("created_at DESC").page(params[:page])
+
 	end
 
 	private
@@ -209,7 +266,10 @@ class WelcomeController < ApplicationController
 		params.require(:comment).permit(:link, :comment )
 	end
 
-
+	
+	def reply_params
+		params.require(:replycomment).permit(:description)
+	end
 
 
 end

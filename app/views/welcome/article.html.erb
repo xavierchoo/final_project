@@ -1,42 +1,75 @@
 <%
+
   link = @art.image
+
+
 
 %>
 
+
+
 <div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
+
+
   <span> <%= raw @art.description %></span>
+
 </div>
+
+
+
 
 
  <center><h1><%= raw @title %></h1></center>
 
+
+
+
 <div class="container">
+
   <div class="row">
+
+
          <div class="col-md-1">
 
+
+
          </div>
+
          <div class="col-md-7">
 
+
+
             <p style="text-align: justify; margin-top:10%; font-size:22px;" >&emsp;&emsp; <%= raw @paragraph %></p>
+
          </div>
+
          <div class="col-md-1">
 
+
+
          </div>
+
          <div class="col-md-3 image-library">
+			
            <% @images.each do |y| %>
+             <% if !y.include? "line"%>
 
-             <% if !y.nil? && !y.include?("line") %>
-               <div href="<%= y %>" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                <img src="<%= y %>">
-              </div>
+               <img src="<%= y %>" alt="">
+
              <% end %>
-
            <% end %>
 
 
 
+
+
+
+
          </div>
+
+
  </div>
+
 </div>
 
 <script type="text/javascript" >
@@ -51,11 +84,33 @@
 
 
 
-<!-- <%= form_for @comment, url: comment_create_path(article_link: @linking), html: {class: "nifty_form"} do |f| %>
+
+
+
+
+
+
+<%= button_to "Bookmark", bookmark_create_path(article_link: @linking) , method: :post %>
+<%= form_for @comment, url: comment_create_path(article_link: @linking), html: {class: "nifty_form"} do |f| %>
 
   <%= f.text_area :comment, size: "60x12" %>
   <%= button_to "Add comment", method: :post %>
 <% end %>
+
+
 <% @show_comments.each do |x| %>
-<%= x.comment %></br>
-<% end %> -->
+	<%= x.comment %>
+	<button id="<%= x.id %>"type="button" onclick="comment(event)">Reply</button><br/>
+	<div class= 'comment_display' id = "comment-<%=x.id%>" style="display:none;">
+	
+
+		<% @showreply.each do |y| %>
+		<%= y.description  %><br/>
+		<% end %>
+		<%= form_for @reply, url: reply_create_path(comment_id: x.id), html: {class: "nifty_form"} do |f| %>
+		  <%= f.text_area :description, size: "60x12" %>
+		  <%= button_to "Add reply", method: :post %>
+		<% end %>                                            
+	</div>
+<% end %>
+
