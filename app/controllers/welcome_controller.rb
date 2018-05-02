@@ -12,6 +12,10 @@ class WelcomeController < ApplicationController
 	end
 
 	def article
+		comment_id = params[:comment]
+		@showreply = Replycomment.where(comment_id: comment_id)
+		
+		@reply = Replycomment.new
 		@bookmark = Bookmark.new
 		@show_comments = Comment.where(article_id: params[:article_id])
 		@comment = Comment.new
@@ -31,6 +35,7 @@ class WelcomeController < ApplicationController
 				@vidpic =[]
 				@vidpic = parsed_content.css('.story-body').css('.story-body__inner').css('.player-with-placeholder').css('.media-placeholder.player-with-placeholder__image')
 				@vidpictures = @vidpic.map {|i| i.attr('src')}
+				byebug
 			elsif !parsed_content.css('.vxp-media__container').empty?
 				@images = []
 				@vidpic =[]
@@ -78,6 +83,20 @@ class WelcomeController < ApplicationController
 			else
 				redirect_to '/error'
 			end
+		end
+	end
+
+	def reply
+		comment_id = params[:comment_id]
+
+		@showreply = Replycomment.where(comment_id: comment_id)
+		@reply = Replycomment.new(reply_params)
+		@reply.user_id = current_user.id
+		@reply.comment_id = comment_id
+		if @reply.save
+			 redirect_back(fallback_location: article_page_path(comment_id: comment_id))
+		else
+			redirect_to '/error'
 		end
 	end
 
@@ -130,6 +149,8 @@ class WelcomeController < ApplicationController
 	end
 
 	
-
+	def reply_params
+		params.require(:replycomment).permit(:description)
+	end
 
 end

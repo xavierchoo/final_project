@@ -25,7 +25,7 @@ sources.each do |source|
     sources: source[:sources],
     domains: source[:domains],
     from: '2018-04-01',
-    to: '2018-04-24',
+    to: '2018-05-01',
     language: 'en',
     page: '10'
   )

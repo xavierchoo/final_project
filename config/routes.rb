@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   get "/health" => "welcome#health", as: "health_page"
   get "/sport" => "welcome#sport", as: "sport_page"
   post "/bookmark" => "welcome#bookmark", as: "bookmark_create"
+  post "/article/reply" => "welcome#reply", as: "reply_create"
 end

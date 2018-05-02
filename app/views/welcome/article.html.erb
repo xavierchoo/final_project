@@ -5,6 +5,19 @@
   <%= f.text_area :comment, size: "60x12" %>
   <%= button_to "Add comment", method: :post %>
 <% end %>
+
+
 <% @show_comments.each do |x| %>
-<%= x.comment %></br>
+	<%= x.comment %><button id="<%= x.id %>"type="button" onclick="comment(event)">Reply</button><br/>
+
+	<div class= 'comment_display' id = "comment-<%=x.id%>" style="display:none;">
+		<% @showreply.each do |y| %>
+		<%= y.description  %>
+		<% end %>
+		<%= form_for @reply, url: reply_create_path(comment_id: x.id), html: {class: "nifty_form"} do |f| %>
+		  <%= f.text_area :description, size: "60x12" %>
+		  <%= button_to "Add reply", method: :post %>
+		<% end %>                                            
+	</div>
 <% end %>
+
