@@ -107,8 +107,19 @@ class WelcomeController < ApplicationController
 			@images = @image.map{|x| x.attr('src')}
 		elsif source == "The New York Times"
 			@title = parsed_content.css('#story').css('h1').children
-			@image = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
-			@paragraph =  parsed_content.css('#story').css('.story-body-text.story-content').css('p').inner_text
+			@images =[]
+			if !parsed_content.css('#story').css('.story-body').empty?
+				@images = parsed_content.css('#story').css('.story-body img').map{|x| x.attr('src')}
+			elsif !parsed_content.css('#story').css('.ResponsiveMedia-container--G2JS6').empty?
+				@images = parsed_content.css('#story').css('.ResponsiveMedia-container--G2JS6 img').map{|x| x.attr('src')}
+			else
+			end
+			if !parsed_content.css('.story-body-text.story-content').empty?
+				@paragraph =  parsed_content.css('#story').css('.story-body-text.story-content').css('p').inner_text
+			elsif !parsed_content.css('#story').css('.StoryBodyCompanionColumn').empty?
+				@paragraph =  parsed_content.css('#story').css('.StoryBodyCompanionColumn').css('p').inner_text
+			else
+			end
 			@new_paragraph = @paragraph.split(".")
 			count = 0
 

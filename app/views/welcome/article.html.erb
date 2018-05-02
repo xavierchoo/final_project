@@ -4,24 +4,50 @@
 %>
 
 <div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
-  <span> <%=@art.description %></span>
+  <span> <%= raw @art.description %></span>
 </div>
 
 
- <center><h1><%= @title %></h1></center>
+ <center><h1><%= raw @title %></h1></center>
 
 <div class="container">
   <div class="row">
-         <div class="col-md-3">
+         <div class="col-md-1">
 
          </div>
-         <div class="col-md-6">
+         <div class="col-md-7">
 
-            <p style="text-align: justify; margin-top:10%;" >&emsp;&emsp; <%= raw @paragraph %></p>
+            <p style="text-align: justify; margin-top:10%; font-size:22px;" >&emsp;&emsp; <%= raw @paragraph %></p>
          </div>
-         <div class="col-md-3"></div>
+         <div class="col-md-1">
+
+         </div>
+         <div class="col-md-3 image-library">
+           <% @images.each do |y| %>
+
+             <% if !y.nil? && !y.include?("line") %>
+               <div href="<%= y %>" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                <img src="<%= y %>">
+              </div>
+             <% end %>
+
+           <% end %>
+
+
+
+         </div>
  </div>
 </div>
+
+<script type="text/javascript" >
+
+  $(document).off('click')
+  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+
+</script>
 
 
 
