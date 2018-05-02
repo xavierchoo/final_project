@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   get "/admin" => "admins#index", as: "admin_index"
   post "/admin" => "admins#create", as: "admin_create"
-  get "/article" => "welcome#article", as: "article_page"
+  get "/article" => "welcome#article", as: "article_page" 
   post "/article" => "welcome#comment", as: "comment_create"
   get "/search" => "welcome#search", as: "search"
   get "/general" => "welcome#general", as: "general_page"
@@ -35,6 +35,10 @@ Rails.application.routes.draw do
   get "/technology" => "welcome#technology", as: "technology_page"
   get "/health" => "welcome#health", as: "health_page"
   get "/sport" => "welcome#sport", as: "sport_page"
+  get "preference" => "welcome#preference", as: "preference_page"
  
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+
+  patch "/preferenceupdate" => "preference#update", as: "preference_update"
+
 end

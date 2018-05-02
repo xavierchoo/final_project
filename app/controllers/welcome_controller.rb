@@ -9,6 +9,10 @@ class WelcomeController < ApplicationController
 	  else
 	  	@articles = Article.where(published: false)
 	  end
+	end	
+
+	def preference
+		@articles = Article.where(category: current_user.preference)
 	end
 
 	def article
