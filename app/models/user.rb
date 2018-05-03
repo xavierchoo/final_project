@@ -4,7 +4,8 @@ class User < ApplicationRecord
   has_many :follows
   belongs_to :follow, optional: true
   has_many :authentications, dependent: :destroy
-
+  has_many :bookmarks
+  has_many :comments
 
   mount_uploader :profile_pic, ProfilePicUploader
   validates :email, presence: true
@@ -19,7 +20,7 @@ class User < ApplicationRecord
 
    def self.create_with_auth_and_hash(authentication, auth_hash)
    user = self.create!(
-     
+
      email: auth_hash["info"]["email"],
      password: SecureRandom.hex(10)
    )

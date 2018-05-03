@@ -6,7 +6,9 @@ class UsersController < Clearance::UsersController
 		@follower = @user.get_followers
 		@following = @user.get_following
 		@user_comment = Comment.where(user_id: params[:id])
+		@bookmark = Bookmark.where(user_id: @user)
 		@user_bookmark = Bookmark.where(user_id: params[:id])
+		
 	end
 
 	def create
@@ -24,7 +26,7 @@ class UsersController < Clearance::UsersController
 		@user = current_user
 	end
 
-	def update 
+	def update
 		current_user.update(register_params)
 		current_user.save
 		redirect_to user_path(id: current_user.id)

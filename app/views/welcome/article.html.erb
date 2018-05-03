@@ -1,37 +1,18 @@
 <%
-
   link = @art.image
-
-
-
 %>
 
-
-
 <div class="jumbotron jumbotron-fluid"  style="background-image: url(<%= link %>)">
-
-
   <span> <%= raw @art.description %></span>
-
 </div>
 
-
-
-
-
  <center><h1><%= raw @title %></h1></center>
-
-
-
 
 <div class="container">
 
   <div class="row">
 
-
          <div class="col-md-1">
-
-
 
          </div>
 
@@ -50,26 +31,38 @@
          </div>
 
          <div class="col-md-3 image-library">
-			
+          <%= button_to "Bookmark", bookmark_create_path(article_link: @linking) , method: :post , class:"buttonB bookmarkButton" %><br>
            <% @images.each do |y| %>
-             <% if !y.include? "line"%>
-
-               <img src="<%= y %>" alt="">
-
-             <% end %>
+           <% if !y.nil? && !y.include?("line") %>
+               <div href="<%= y %>" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                 <img src="<%= y %>">
+             </div>
            <% end %>
-
-
-
-
-
-
+           <% end %>
 
          </div>
 
-
  </div>
 
+</div>
+
+
+
+<div class="container comment-box">
+  <h3>Comments</h3>
+  <% @show_comments.each do |x| %>
+    <b><h5><%= x.user.first_name + " " + x.user.last_name %></h5></b>
+  	<%= x.comment %>
+    <br><br>
+  <% end %>
+    <%= form_for @comment, url: comment_create_path(article_link: @linking), html: {class: "nifty_form"} do |f| %>
+
+      <%= f.text_area :comment, size: "60x12" %><br>
+      <div class="buttonC">
+        <%= button_to "Add comment", method: :post   %>
+      </div>
+
+    <% end %>
 </div>
 
 <script type="text/javascript" >
@@ -81,26 +74,3 @@
         });
 
 </script>
-
-
-
-
-
-
-
-
-
-<%= button_to "Bookmark", bookmark_create_path(article_link: @linking) , method: :post %>
-<%= form_for @comment, url: comment_create_path(article_link: @linking), html: {class: "nifty_form"} do |f| %>
-
-  <%= f.text_area :comment, size: "60x12" %>
-  <%= button_to "Add comment", method: :post %>
-<% end %>
-
-
-<% @show_comments.each do |x| %>
-	<%= x.comment %>
-	<button id="<%= x.id %>"type="button" onclick="comment(event)">Reply</button><br/>
-	
-<% end %>
-
