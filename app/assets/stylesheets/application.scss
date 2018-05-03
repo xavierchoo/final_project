@@ -360,7 +360,7 @@ body{
 }
 .user-profile img{
   height: 255px;
-  border: 3px solid black;
+
 }
 
 .image-library{
@@ -436,4 +436,12 @@ body{
 
 textarea{
   height: 50px;
+}
+
+.bookmark-user img{
+  height: 10rem;
+  border: none;
+}
+.comment-user img{
+  border: none;
 }
